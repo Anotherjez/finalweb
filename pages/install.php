@@ -2,7 +2,14 @@
 
 include('../libs/utils.php');
 
-if($_POST && $_POST['password1'] == $_POST['password2']){
+if(isset($_POST) && isset($_POST['password1']) && isset($_POST['password2'])){
+    if($_POST['password1'] != $_POST['password2']){
+        echo '<script language="javascript">';
+        echo "alert('Las contraseñas no coinciden!');";
+        echo '</script>';
+    }
+}
+else if($_POST && $_POST['password1'] == $_POST['password2']){
 
     foreach($_POST as &$value){
         $value = addslashes($value);
@@ -19,7 +26,8 @@ if($_POST && $_POST['password1'] == $_POST['password2']){
 
     mysqli_query($con, "use {$dbname}");
     
-    $sql = "CREATE TABLE guests(
+    // Pacientes - Arreglar esto
+    $sql = "CREATE TABLE pacientes(
     id int(11) not null primary key auto_increment,
     nombre varchar(250) not null,
     apellido varchar(250) not null,
@@ -53,19 +61,19 @@ if($_POST && $_POST['password1'] == $_POST['password2']){
     $sql = "CREATE TABLE user_log(
 	id int not null PRIMARY KEY AUTO_INCREMENT,
     user_id int not null,
-    guest_id int not null,
+    paciente_id int not null,
     remote_addr varchar(255) NOT NULL DEFAULT '',
     request_uri varchar(255) NOT NULL DEFAULT '',
     message text NOT NULL,
     log_date timestamp NOT NULL DEFAULT NOW(),
     FOREIGN KEY(user_id)
     	REFERENCES users(id),
-    FOREIGN KEY(guest_id)
-    	REFERENCES guests(id));";
+    FOREIGN KEY(paciente_id)
+    	REFERENCES pacientes(id));";
     
     mysqli_query($con, $sql);
 
-    $sql = "insert into user_role(name) VALUES('admin'),('user')";
+    $sql = "insert into user_role(name) VALUES('admin'),('doctor'),('asistente')";
     
     mysqli_query($con, $sql);
     
@@ -91,12 +99,7 @@ if($_POST && $_POST['password1'] == $_POST['password2']){
         header("Location:index.php");
     }
     
-}else if($_POST['password1'] != $_POST['password2'] && isset($_POST)){
-    echo '<script language="javascript">';
-    echo "alert('Las contraseñas no coinciden!');";
-    echo '</script>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -104,13 +107,15 @@ if($_POST && $_POST['password1'] == $_POST['password2']){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Instalar Hotel Magno</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.scss">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <title>Instalar Consultorio</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 </head>
 <body> 
-    <img src="../assets/images/hotelicon.png" class="rounded mx-auto d-block" style="padding-top: 40px;">
+    <img src="../assets/images/servidor.png" class="rounded mx-auto d-block" style="padding: 40px 0 40px 0;" data-aos="zoom-in" data-aos-duration="1200">
 
     <?php
 
@@ -120,6 +125,15 @@ if($_POST && $_POST['password1'] == $_POST['password2']){
             Installed();
         }
     ?>
-    
+
+<script src="../assets/js/aos.js"></script>
+<script>
+  AOS.init();
+
+  $(document).ready(function(){
+        $('#adminuser').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    });
+</script>
+<script src="../assets/js/jquery.mask.min.js"></script>
 </body>
 </html>

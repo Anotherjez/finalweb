@@ -8,13 +8,13 @@ include('../libs/connection.php');
 
 function LoadInstall(){
     echo<<<INSTALL
-    <div class="container container2" style="margin-bottom: 60px;">
+    <div class="container" style="margin-bottom: 60px;" data-aos="fade-up" data-aos-duration="1000">
         <form method="POST">
             <p>A continuación debes introducir los detalles de conexión de tu base de datos. Si no estás seguro de esta información contacta con tu proveedor de alojamiento web.</p>
             <div class="form-group">
               <label for="dbnamelabel">Nombre de la base de datos</label>
-              <input required type="text" class="form-control" id="dbname" name="dbname" placeholder="hotel">
-              <small id="dbnameHelp" class="form-text text-muted">El nombre de la base de datos que quieres usar con Hotel Magno.</small>
+              <input required type="text" class="form-control" id="dbname" name="dbname" placeholder="consultorio">
+              <small id="dbnameHelp" class="form-text text-muted">El nombre de la base de datos que quieres usar con tu pagina web.</small>
             </div>
             <div class="form-group">
               <label for="usernamelabel">Nombre de usuario</label>
@@ -58,9 +58,9 @@ function Installed(){
     <div class="container" style="padding-top: 40px;">
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Instalado!</h4>
-        <p>Hotel Magno esta instalado y listo para su uso.</p>
+        <p>Su pagina web esta instalada y listo para su uso.</p>
         <hr>
-        <p class="mb-0">Presiona el boton debajo para continuar a la pagina principal de tu Hotel Magno.</p>
+        <p class="mb-0">Presiona el boton debajo para continuar a la pagina principal de tu Consultorio.</p>
         <br>
         <a href="index.php" class="btn btn-outline-success">Pagina princial</a>
     </div>
