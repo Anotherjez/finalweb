@@ -24,29 +24,48 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
     $sql = "CREATE DATABASE {$dbname};";
     mysqli_query($con, $sql);
 
-    mysqli_query($con, "use {$dbname}");
+    mysqli_query($con, "use {$dbname}");    
     
-    // Pacientes - Arreglar esto
-    $sql = "CREATE TABLE pacientes(
+    // Visita
+    $sql = "CREATE TABLE visitas(
     id int(11) not null primary key auto_increment,
-    nombre varchar(250) not null,
-    apellido varchar(250) not null,
-    pasaporte varchar(250) not null,
-    correo varchar(250) not null,
-    telefono varchar(250) not null,
-    pais varchar(250) not null,
-    firstdate date,
-    lastdate date,
-    room int(11));";
+    fecha date not null,
+    comentario varchar(255) not null,
+    receta varchar(255) not null,
+    fecha_proxima date not null);";
 
     mysqli_query($con, $sql);
 
-    $sql = "create table user_role(
+    // Pacientes
+    $sql = "CREATE TABLE pacientes(
+    id int(11) not null primary key auto_increment,
+    cedula varchar(14) not null,
+    nombre varchar(255) not null,
+    apellido varchar(255) not null,
+    nacimiento date not null,
+    telefono varchar(255) not null,
+    sangre nchar(2) not null);";
+
+    mysqli_query($con, $sql);
+
+    // Eventos/citas/calendario
+    $sql= "CREATE TABLE events(
+        id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        title varchar(255) NOT NULL,
+        color varchar(7) DEFAULT NULL,
+        start datetime NOT NULL,
+        end datetime DEFAULT NULL
+    );";
+    mysqli_query($con, $sql);
+
+    // Roles
+    $sql = "CREATE TABLE user_role(
     id int PRIMARY KEY AUTO_INCREMENT not null,
     name varchar(10));";
     
     mysqli_query($con, $sql);
 
+    // Usuarios
     $sql = "CREATE TABLE users(
     id int(11) not null primary key auto_increment,
     name varchar(250) not null,
@@ -58,6 +77,7 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
     
     mysqli_query($con, $sql);
 
+    // Registros/Log
     $sql = "CREATE TABLE user_log(
 	id int not null PRIMARY KEY AUTO_INCREMENT,
     user_id int not null,
