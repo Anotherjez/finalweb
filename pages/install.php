@@ -2,14 +2,7 @@
 
 include('../libs/utils.php');
 
-if(isset($_POST) && isset($_POST['password1']) && isset($_POST['password2'])){
-    if($_POST['password1'] != $_POST['password2']){
-        echo '<script language="javascript">';
-        echo "alert('Las contraseñas no coinciden!');";
-        echo '</script>';
-    }
-}
-else if($_POST && $_POST['password1'] == $_POST['password2']){
+if($_POST && $_POST['password1'] == $_POST['password2']){
 
     foreach($_POST as &$value){
         $value = addslashes($value);
@@ -119,6 +112,10 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
         header("Location:index.php");
     }
     
+}else if($_POST['password1'] != $_POST['password2'] && isset($_POST)){
+    echo '<script language="javascript">';
+    echo "alert('Las contraseñas no coinciden!');";
+    echo '</script>';
 }
 ?>
 
