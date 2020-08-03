@@ -8,7 +8,8 @@ include_once('configx.php');
     private $name;
     private $username;
     private $admin;
-
+    private $isUser = false;
+    
     public function userExists($user, $pass)
     {
         $md5pass = md5($pass);
@@ -39,6 +40,12 @@ include_once('configx.php');
                 $this->admin = false;
             }
         }
+
+        $this->$isUser = true;
+    }
+
+    public function isUser(){
+        return $this->$isUser;
     }
 
     public function getName()
