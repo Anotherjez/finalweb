@@ -1,15 +1,8 @@
 <?php
 
-include('../libs/utils.php');
+include('../../libs/utils.php');
 
-if(isset($_POST) && isset($_POST['password1']) && isset($_POST['password2'])){
-    if($_POST['password1'] != $_POST['password2']){
-        echo '<script language="javascript">';
-        echo "alert('Las contraseñas no coinciden!');";
-        echo '</script>';
-    }
-}
-else if($_POST && $_POST['password1'] == $_POST['password2']){
+if($_POST && $_POST['password1'] == $_POST['password2']){
 
     foreach($_POST as &$value){
         $value = addslashes($value);
@@ -111,14 +104,18 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
         define('DB_NAME', '{$dbname}');
         ?>";
 
-        if(!file_exists("../libs/configx.php")){
-            file_put_contents('../libs/configx.php', $config, FILE_APPEND | LOCK_EX);
+        if(!file_exists("../../libs/configx.php")){
+            file_put_contents('../../libs/configx.php', $config, FILE_APPEND | LOCK_EX);
         }else{    
-            file_put_contents("../libs/configx.php", $config);
+            file_put_contents("../../libs/configx.php", $config);
         }
         header("Location:index.php");
     }
     
+}else if($_POST['password1'] != $_POST['password2'] && isset($_POST)){
+    echo '<script language="javascript">';
+    echo "alert('Las contraseñas no coinciden!');";
+    echo '</script>';
 }
 ?>
 
@@ -128,25 +125,25 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Instalar Consultorio</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/aos.css">
-    <script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/aos.css">
+    <script src="../../assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
 </head>
 <body> 
-    <img src="../assets/images/servidor.png" class="rounded mx-auto d-block" style="padding: 40px 0 40px 0;" data-aos="zoom-in" data-aos-duration="1200">
+    <img src="../../assets/images/servidor.png" class="rounded mx-auto d-block" style="padding: 40px 0 40px 0;" data-aos="zoom-in" data-aos-duration="1200">
 
     <?php
 
-        if(!file_exists("../libs/configx.php")){
+        if(!file_exists("../../libs/configx.php")){
             LoadInstall();
         }else{
             Installed();
         }
     ?>
 
-<script src="../assets/js/aos.js"></script>
+<script src="../../assets/js/aos.js"></script>
 <script>
   AOS.init();
 
@@ -154,6 +151,6 @@ else if($_POST && $_POST['password1'] == $_POST['password2']){
         $('#adminuser').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
     });
 </script>
-<script src="../assets/js/jquery.mask.min.js"></script>
+<script src="../../assets/js/jquery.mask.min.js"></script>
 </body>
 </html>
