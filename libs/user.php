@@ -41,11 +41,11 @@ include_once('configx.php');
             }
         }
 
-        $this->$isUser = true;
+        $this->isUser = true;
     }
 
     public function isUser(){
-        return $this->$isUser;
+        return $this->isUser;
     }
 
     public function getName()
