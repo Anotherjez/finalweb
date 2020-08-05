@@ -26,7 +26,7 @@ function GetPacientes()
                 <td>{$paciente['telefono']}</td>
                 <td>{$paciente['sangre']}</td>
                 <td>
-                <a href="pacienteedit.php?paciente={$paciente['pasaporte']}" class="btn btn-outline-warning">Editar</a>
+                <a href="editpaciente.php?cedula={$paciente['cedula']}" class="btn btn-outline-warning">Editar</a>
                 <br>
                 <button onclick="DeletePaciente(this)" class="btn btn-outline-danger">Eliminar</button>
                 </td>

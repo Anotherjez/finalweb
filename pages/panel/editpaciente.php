@@ -44,30 +44,30 @@ if($_POST){
     
     extract($_POST);
 
-    $sql = "select * from guests where pasaporte = '{$pasaporte}'";
+    $sql = "select * from pacientes where cedula = '{$cedula}'";
 
     $objs = Connection::query_arr($sql);
     if(count($objs) > 0){
         
-        $sql = "update guests set nombre = '{$nombre}', apellido = '{$apellido}', correo = '{$correo}', telefono = '{$telefono}', pais = '{$pais}', firstdate = '{$firstdate}', lastdate = '{$lastdate}', room = {$room} where pasaporte = '{$pasaporte}'";
+        $sql = "update pacientes set cedula = '{$cedula}', nombre = '{$nombre}', apellido = '{$apellido}', nacimiento = '{$nacimiento}', telefono = '{$telefono}', sangre = '{$sangre}'";
         $userid = $user->getId();
         $guestid = $objs[0];
         $guestid = $guestid['id'];
-        Write_Log("Editar huesped", $userid, $guestid);
+        Write_Log("Editar Paciente", $userid, $guestid);
     }else{
-        $sql = "insert into guests(nombre, apellido, pasaporte, correo, telefono, pais, firstdate, lastdate, room) 
-        values('{$nombre}','{$apellido}','{$pasaporte}','{$correo}','{$telefono}','{$pais}','{$firstdate}','{$lastdate}',{$room})";
+        $sql = "insert into pacientes(cedula, nombre, apellido, nacimiento, telefono, sangre) 
+        values('{$cedula}','{$nombre}','{$apellido}','{$nacimiento}','{$telefono}','{$sangre}')";
     }
     
     $rsid = Connection::execute($sql, true);
     
     if(!count($objs) > 0){
-        $sql = "select * from guests where pasaporte = '{$pasaporte}'";
+        $sql = "select * from pacientes where cedula = '{$cedula}'";
         $objs = Connection::query_arr($sql);
         $userid = $user->getId();
         $guestid = $objs[0];
         $guestid = $guestid['id'];
-        Write_Log("Añadir huesped", $userid, $guestid);
+        Write_Log("Añadir Paciente", $userid, $guestid);
     }
     
     $dir = "../../assets/profile";
@@ -84,9 +84,9 @@ if($_POST){
     header("Location:dashboard.php");
 
 }
-else if(isset($_GET['guest'])){
+else if(isset($_GET['paciente'])){
 
-    $sql = "select * from guests where pasaporte = '{$_GET['guest']}'";
+    $sql = "select * from pacientes where cedula = '{$_GET['cedula']}'";
 
     $objs = Connection::query_arr($sql);
     
@@ -103,33 +103,31 @@ include('headerpanel.php');
 
 <div class="container" style="padding-bottom: 40px;">
     
-    <?php if($isEditing) : echo "<h2>Editar Huesped</h2>"; else : echo "<h2>Añadir Huesped</h2>";endif; ?>
+    <?php if($isEditing) : echo "<h2>Editar Paciente</h2>"; else : echo "<h2>Añadir Paciente</h2>";endif; ?>
     <br>    
     <form enctype="multipart/form-data" method="POST">
 
         <?php 
-            $condition = ['placeholder'=>'RD0101010'];
+            $condition = ['placeholder'=>'Cedula'];
             if($isEditing){
                 $condition['readonly'] = 'readonly';
             }
-            echo Input('pasaporte','Pasaporte','', $condition);        
+            echo Input('cedula','Cedula','', $condition);        
         ?>
         <!-- Nombre -->
+        
         <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre']) ?>
         <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido']) ?>
-        <?= Input('correo','Correo','', ['placeholder'=>'name@example.com', 'type'=>'email']) ?>
+        <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date']) ?>
         <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234']) ?>
-        <?= Input('pais','Pais de origen','', ['placeholder'=>'Republica Dominicana']) ?>
-        <?= Input('firstdate','Fecha de llegada','', ['type'=>'date']) ?>
-        <?= Input('lastdate','Fecha de salida','', ['type'=>'date']) ?>
-        <?= Input('room','Numero de habitacion','', ['placeholder'=>'301','type'=>'number']) ?>
-        <?= Input('foto','Foto','',['type'=>'file']) ?>
+        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre']) ?>
+
         
         <br>
         <br>
 
         <button type="submit" class="btn btn-primary">Registrar</button>
-        <a href="home.php" class="btn btn-secondary">Cancelar</a>
+        <a href="pacientes.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 <script>
