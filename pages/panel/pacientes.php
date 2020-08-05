@@ -31,6 +31,10 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
+if(!$user->getAdmin()){
+  header("Location: home.php");
+}
+
 if($_POST){
 
   foreach($_POST as &$value){
@@ -38,14 +42,8 @@ if($_POST){
   }        
 
   extract($_POST);
-  $userid = $user->getId();
-  $sql = "select * from guests where pasaporte = '{$pasaporte}'";
-  $objs = Connection::query_arr($sql);
-  $objs = $objs[0];
-  $guestid = $objs['id'];
 
-  Write_Log("Eliminar huesped", $userid, $guestid);
-  $sql = "delete from guests where pasaporte = '{$pasaporte}'";
+  $sql = "delete from pacientes where cedula = '{$cedula}'";
   Connection::execute($sql);
     
   header("Refresh:0");
@@ -56,51 +54,47 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Huespedes</h2>
+  <h2>Pacientes</h2>
   <br>
-  <a href="guestedit.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir huesped</a>
-  
+  <a href="editpaciente.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir Paciente</a>
 </div>
 <br>
 
 <div class="table-responsive">
     <table class="table table-striped table-hover" style="margin-bottom: 260px;">
-    <thead class="thead-dark">
+    <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Foto</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Pasaporte</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Telefono</th>
-        <th scope="col">Pais</th>
-        <th scope="col">Fecha de llegada</th>
-        <th scope="col">Fecha de salida</th>
-        <th scope="col">Habitacion</th>
-        <th scope="col">Accion</th>
+            <th scope="col">#</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Tipo de Sangre</th>
+            <th scope="col">Accion</th>
         </tr>
     </thead>
     <tbody>
-        <?php GetGuests(); ?>
+        <?php GetPacientes(); ?>
     </tbody>
     </table>
 <div>
 
 <script>
 
-  function DeleteGuest(e){
+  function DeletePaciente(e){
     tr = e.parentNode.parentNode;
     if(confirm('¿Esta seguro que desea eliminar?')){
       value = tr.getAttribute('index');
       $.ajax({
-        url: 'home.php',
+        url: 'pacientes.php',
         type: 'POST',
         dataType: 'html',
-        data: {'pasaporte': value}
+        data: {'cedula': value}
       });
     } 
   }
+  
 </script>
 
-<?php include('footerpanel.php'); ?>
+<?php include('../footer.php'); ?>

@@ -6,47 +6,37 @@ if(file_exists("../../libs/configx.php")){
 
 include('../../libs/connection.php');
 
-function GetGuests()
+function GetPacientes()
 {
-    $sql = "Select * from guests";
+    $sql = "Select * from pacientes";
 
     $data = Connection::query_arr($sql);
     $num = 0;
 
     if(count($data) > 0){
-        foreach ($data as $guest) {
+        foreach ($data as $paciente) {
             $num = $num + 1;
-            echo<<<GUEST
-                <tr index="{$guest['pasaporte']}">
+            echo<<<PACIENTE
+                <tr index="{$paciente['cedula']}">
                 <th scope="row">{$num}</th>
-                GUEST;
-                if(file_exists("../../assets/profile/{$guest['id']}.jpg")){
-                    echo "<td><img style='height: 60px;' src='../../assets/profile/{$guest['id']}.jpg'></td>";
-                }else{
-                    echo "<td><img style='height: 60px;' src='../../assets/profile/placeholder.jpg'></td>";
-                }
-                echo <<<GUEST
-                <td>{$guest['nombre']}</td>
-                <td>{$guest['apellido']}</td>
-                <td>{$guest['pasaporte']}</td>
-                <td>{$guest['correo']}</td>
-                <td>{$guest['telefono']}</td>
-                <td>{$guest['pais']}</td>
-                <td>{$guest['firstdate']}</td>
-                <td>{$guest['lastdate']}</td>
-                <td>{$guest['room']}</td>
+                <td>{$paciente['cedula']}</td>
+                <td>{$paciente['nombre']}</td>
+                <td>{$paciente['apellido']}</td>
+                <td>{$paciente['nacimiento']}</td>
+                <td>{$paciente['telefono']}</td>
+                <td>{$paciente['sangre']}</td>
                 <td>
-                <a href="guestedit.php?guest={$guest['pasaporte']}" class="btn btn-outline-warning">Editar</a>
+                <a href="pacienteedit.php?paciente={$paciente['pasaporte']}" class="btn btn-outline-warning">Editar</a>
                 <br>
-                <button onclick="DeleteGuest(this)" class="btn btn-outline-danger">Eliminar</button>
+                <button onclick="DeletePaciente(this)" class="btn btn-outline-danger">Eliminar</button>
                 </td>
             </tr>
-            GUEST;
+            PACIENTE;
         }
     }else{
         echo<<<INFO
         <div class="alert alert-info" role="alert">
-            Aun no hay huespedes registrados        
+            Aun no hay pacientes registrados        
         </div>
         INFO;
     }
@@ -63,8 +53,10 @@ function GetUsers()
             $num = $num + 1;
             if ($user['role'] == 1) {
                 $role = "Admin";
+            }else if ($user['role'] == 2){
+                $role = "Doctor";
             }else{
-                $role = "Usuario";
+                $role = "Asistente";
             }
             echo<<<USER
             <tr index="{$user['username']}">
@@ -144,8 +136,9 @@ function Input($id, $label, $value="", $opts=[]){
         <div class="form-group">
             <label>{$label}</label>
             <select class="form-control" id="{$id}" name="{$id}" required>
-                <option>Usuario</option>
                 <option>Administrador</option>
+                <option>Doctor</option>
+                <option>Asistente</option>
             </select>
         </div>
         INPUT;

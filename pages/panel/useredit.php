@@ -47,7 +47,9 @@ if($_POST){
 
         $objs = Connection::query_arr($sql);
         
-        if($role == "Usuario"){
+        if($role == "Asistente"){
+            $userrole = 3;
+        }else if($role == "Doctor"){
             $userrole = 2;
         }else if($role == "Administrador"){
             $userrole = 1;
