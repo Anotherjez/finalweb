@@ -178,8 +178,13 @@ function Write_log($message, $id, $guestid)
     $remote_addr = "REMOTE_ADDR_UNKNOWN";
   }
  
-  if( ($request_uri = $_SERVER['REQUEST_URI']) == '') {
-    $request_uri = "REQUEST_URI_UNKNOWN";
+  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+    $request_uri = "https://";   
+    else  
+    $request_uri.= "http://";   
+    
+  if( ($request_uri.= $_SERVER['REQUEST_URI']) == '') {
+    $request_uri.= "REQUEST_URI_UNKNOWN";
   }
 
   $sql = "INSERT INTO user_log(user_id, guest_id, remote_addr, request_uri, message) VALUES({$id}, {$guestid}, '{$remote_addr}', '{$request_uri}','{$message}')";

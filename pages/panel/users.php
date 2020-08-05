@@ -62,7 +62,7 @@ include('headerpanel.php');
 
 <div class="table-responsive">
     <table class="table table-striped table-hover" style="margin-bottom: 260px;">
-    <thead class="thead-dark">
+    <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>

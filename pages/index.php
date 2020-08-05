@@ -76,7 +76,7 @@ include('header.php');
   </div>
   <div class="card">
     <img src="../assets/images/card2.jpg" class="img-fluid">
-    <div class="card-body">
+    <div class="card-body" style="margin-top:10px;">
       <h5 class="card-title">Tiempo</h5>
       <p class="card-text">Hacemos valer el tiempo de nuestros clientes.</p>
     </div>
@@ -95,3 +95,4 @@ include('header.php');
 <script>
   AOS.init();
 </script>
+<?php include("footer.php"); ?>

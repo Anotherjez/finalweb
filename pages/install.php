@@ -128,7 +128,6 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Instalar Consultorio</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/aos.css">
     <script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
@@ -154,5 +153,4 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
     });
 </script>
 <script src="../assets/js/jquery.mask.min.js"></script>
-</body>
-</html>
+<?php include("footer.php"); ?>

@@ -103,4 +103,4 @@ include('headerpanel.php');
   }
 </script>
 
-<?php include('../footer.php'); ?>
+<?php include('footerpanel.php'); ?>
