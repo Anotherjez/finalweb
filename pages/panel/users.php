@@ -31,8 +31,8 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
-if(!$user->getAdmin()){
-  header("Location: home.php");
+if(!($user->getRole() == 1)){
+  header("Location: dashboard.php");
 }
 
 if($_POST){

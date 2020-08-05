@@ -110,7 +110,7 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
             }else{    
                 file_put_contents("../../libs/configx.php", $config);
             }
-            header("Location:index.php");
+            header("Location:../index.php");
         }
         
     }else if($_POST['password1'] != $_POST['password2'] && isset($_POST)){

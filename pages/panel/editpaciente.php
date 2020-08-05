@@ -32,6 +32,9 @@ if(isset($_SESSION['user'])){
   }else{
     header("Location: ../login.php");
 }
+if(!($user->getRole() == 3)){
+    header("Location: dashboard.php");
+}
 
 if($_POST){
 
@@ -78,7 +81,7 @@ if($_POST){
         move_uploaded_file($file['tmp_name'], "{$dir}/{$rsid}.jpg");
     }
 
-    header("Location:home.php");
+    header("Location:dashboard.php");
 
 }
 else if(isset($_GET['guest'])){

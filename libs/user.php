@@ -7,7 +7,7 @@ include_once('configx.php');
 
     private $name;
     private $username;
-    private $admin;
+    private $role;
     private $isUser = false;
     
     public function userExists($user, $pass)
@@ -34,11 +34,7 @@ include_once('configx.php');
         foreach ($data as $currentUser) {
             $this->name = $currentUser['name'];
             $this->username = $currentUser['username'];
-            if($currentUser['role'] == 1){
-                $this->admin = true;
-            }else{
-                $this->admin = false;
-            }
+            $this->role = $currentUser['role'];
         }
 
         $this->isUser = true;
@@ -53,9 +49,9 @@ include_once('configx.php');
         return $this->name;
     }
     
-    public function getAdmin()
+    public function getRole()
     {
-        return $this->admin;
+        return $this->role;
     }
 
     public function getId()

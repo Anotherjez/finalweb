@@ -51,7 +51,7 @@
             </a>
           <? endif; ?>
           </li>
-          <? if($user->getAdmin()): ?>
+          <? if($user->getRole() == 1): ?>
             <? if(strpos($_SERVER['REQUEST_URI'], 'users') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="users.php">
@@ -68,7 +68,7 @@
               </li>
             <? endif; ?>
           <? endif; ?>
-          <? if($user->getAdmin()): ?>
+          <? if($user->getRole() == 3): ?>
             <? if(strpos($_SERVER['REQUEST_URI'], 'pacientes') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="pacientes.php">
