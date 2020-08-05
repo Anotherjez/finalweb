@@ -34,8 +34,8 @@ if(isset($_SESSION['user'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hotel Magno</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.scss">
-    <link rel="stylesheet" href="../assets/css/login.scss">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </head>
@@ -56,24 +56,5 @@ if(isset($_SESSION['user'])){
     </form>
 </div>
 
-
-  <section id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="mx-auto">
-        <ul class="list-unstyled list-inline social text-center">
-          <li class="list-inline-item"><a href="https://www.youtube.com/channel/UC0RfXvPGEcMlJouPg6TL-Hg" target="_blank"><i class="ali ali-yt"></i></a></li>
-          <li class="list-inline-item"><a href="https://www.instagram.com/anotherjez/" target="_blank"><i class="ali ali-ig"></i></a></li>
-          <li class="list-inline-item"><a href="https://github.com/Anotherjez" target="_blank"><i class="ali ali-git"></i></a></li>
-        </ul>
-      </div>
-    </div>	
-    <div class="row">
-      <div class="col mx-auto text-center text-white">
-        <p><u><a href="#homeNavBar">Hotel Magno</a></u> es un proyecto con fines educativos</p>
-        <p class="h6">© Todos los derechos reservados.<a class="text-green ml-2" href="https://www.instagram.com/anotherjez/" target="_blank">Jesus Mercado</a></p>
-      </div>	
-		</div>
-	</section>
 </body>
 </html>
