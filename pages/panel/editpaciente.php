@@ -68,23 +68,12 @@ if($_POST){
         $guestid = $objs[0];
         $guestid = $guestid['id'];
         Write_Log("Añadir Paciente", $userid, $guestid);
-    }
-    
-    $dir = "../../assets/profile";
-        
-    if(!is_dir($dir)){
-        mkdir($dir);
-    }
-
-    $file = $_FILES['foto'];
-    if($file['error'] == 0){
-        move_uploaded_file($file['tmp_name'], "{$dir}/{$rsid}.jpg");
-    }
+    }    
 
     header("Location:dashboard.php");
 
 }
-else if(isset($_GET['paciente'])){
+else if(isset($_GET['cedula'])){
 
     $sql = "select * from pacientes where cedula = '{$_GET['cedula']}'";
 
