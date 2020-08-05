@@ -58,6 +58,11 @@ function ShowVisitas($id){
                 <td>{$visita['comentario']}</td>
                 <td>{$visita['receta']}</td>
                 <td>{$visita['fecha_proxima']}</td>
+                <td><form class="form-inline" method="post" action="../../libs/generate_pdf.php">
+                <input type="hidden" id="id" name="id" value={$visita['id']}>
+                <input type="hidden" id="type" name="type" value="receta">
+                <button type="submit" id="pdf" name="pdf" class="btn btn-outline-success"><i class="far fa-file-pdf" aria-hidden="true"></i> Imprimir Receta</button>
+                </form></td>
             </tr>
             VISITA;
         }

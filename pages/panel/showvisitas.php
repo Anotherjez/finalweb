@@ -60,6 +60,7 @@ include('headerpanel.php');
             <th scope="col">Comentario</th>
             <th scope="col">Receta</th>
             <th scope="col">Fecha de proxima visita</th>
+            <th scope="col">Accion</th>
         </tr>
     </thead>
     <tbody>
