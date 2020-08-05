@@ -51,7 +51,7 @@ if($_POST){
         
         header("Location: detalles.php?cedula={$paciente['cedula']}");
     }else{
-        header("Location: editpaciente.php");
+        header("Location: editpaciente.php?cedula={$cedula}");
     }
 
 }
@@ -64,7 +64,7 @@ include('headerpanel.php');
     
     <h2>Añadir Paciente</h2>
     <br>    
-    <form enctype="multipart/form-data" method="GET" action="editpaciente.php">
+    <form enctype="multipart/form-data" method="POST">
         
         <?= Input('cedula','Cedula','', ['placeholder'=>'Cedula']) ?>
           
