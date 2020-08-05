@@ -1,6 +1,6 @@
 <?php
 
-include('../../libs/utils.php');
+include('../../libs/panelutils.php');
 
 if(isset($_POST['password1']) && isset($_POST['password2'])){
     if($_POST && $_POST['password1'] == $_POST['password2']){
@@ -18,17 +18,7 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
         $sql = "CREATE DATABASE {$dbname};";
         mysqli_query($con, $sql);
     
-        mysqli_query($con, "use {$dbname}");    
-        
-        // Visita
-        $sql = "CREATE TABLE visitas(
-        id int(11) not null primary key auto_increment,
-        fecha date not null,
-        comentario varchar(255) not null,
-        receta varchar(255) not null,
-        fecha_proxima date not null);";
-    
-        mysqli_query($con, $sql);
+        mysqli_query($con, "use {$dbname}");            
     
         // Pacientes
         $sql = "CREATE TABLE pacientes(
@@ -39,6 +29,19 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
         nacimiento date not null,
         telefono varchar(255) not null,
         sangre nchar(2) not null);";
+    
+        mysqli_query($con, $sql);
+
+        // Visita
+        $sql = "CREATE TABLE visitas(
+        id int(11) not null primary key auto_increment,
+        paciente_id int not null,
+        fecha date not null,
+        comentario varchar(255) not null,
+        receta varchar(255) not null,
+        fecha_proxima date not null,
+        FOREIGN KEY(paciente_id)
+            REFERENCES pacientes(id));";
     
         mysqli_query($con, $sql);
     
@@ -75,7 +78,7 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
         $sql = "CREATE TABLE user_log(
         id int not null PRIMARY KEY AUTO_INCREMENT,
         user_id int not null,
-        paciente_id int not null,
+        paciente_id int,
         remote_addr varchar(255) NOT NULL DEFAULT '',
         request_uri varchar(255) NOT NULL DEFAULT '',
         message text NOT NULL,

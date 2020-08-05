@@ -31,22 +31,14 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
-if(!($user->getRole() == 1)){
+if(!($user->getRole() == 2)){
   header("Location: dashboard.php");
 }
 
-if($_POST){
+if(!isset($_GET['paciente'])){
 
-  foreach($_POST as &$value){
-    $value = addslashes($value);
-  }        
+    header("Location: visitas.php");
 
-  extract($_POST);
-
-  $sql = "delete from users where username = '{$username}'";
-  Connection::execute($sql);
-    
-  header("Refresh:0");
 }
 
 include('headerpanel.php');
@@ -54,9 +46,7 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Usuarios</h2>
-  <br>
-  <a href="useredit.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir usuario</a>
+  <h2>Visitas del paciente</h2>
 </div>
 <br>
 
@@ -65,33 +55,17 @@ include('headerpanel.php');
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Username</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Accion</th>
+            <th scope="col">Paciente ID</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Comentario</th>
+            <th scope="col">Receta</th>
+            <th scope="col">Fecha de proxima visita</th>
         </tr>
     </thead>
     <tbody>
-        <?php GetUsers(); ?>
+        <?php ShowVisitas($_GET['paciente']); ?>
     </tbody>
     </table>
 <div>
-
-<script>
-
-  function DeleteUser(e){
-    tr = e.parentNode.parentNode;
-    if(confirm('¿Esta seguro que desea eliminar?')){
-      value = tr.getAttribute('index');
-      $.ajax({
-        url: 'users.php',
-        type: 'POST',
-        dataType: 'html',
-        data: {'username': value}
-      });
-    } 
-  }
-  
-</script>
 
 <?php include('../footer.php'); ?>
