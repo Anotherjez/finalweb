@@ -48,8 +48,8 @@ if($_POST){
 
     $objs = Connection::query_arr($sql);
     if(count($objs) > 0){
-        
-        header("Location: detalles.php?cedula={$paciente['cedula']}");
+        $objs = $objs[0];
+        header("Location: detalles.php?cedula={$objs['cedula']}");
     }else{
         header("Location: editpaciente.php?cedula={$cedula}");
     }
