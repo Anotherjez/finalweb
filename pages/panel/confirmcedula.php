@@ -42,14 +42,14 @@ if($_POST){
         $value = addslashes($value);
     }        
     
-    extract($_POST);
+    extract($_GET);
 
     $sql = "select * from pacientes where cedula = '{$cedula}'";
 
     $objs = Connection::query_arr($sql);
     if(count($objs) > 0){
         
-        header("Location: detalles.php");
+        header("Location: detalles.php?cedula={$paciente['cedula']}");
     }else{
         header("Location: editpaciente.php");
     }
@@ -63,7 +63,7 @@ include('headerpanel.php');
     
     <?php if($isEditing) : echo "<h2>Editar Paciente</h2>"; else : echo "<h2>Añadir Paciente</h2>";endif; ?>
     <br>    
-    <form enctype="multipart/form-data" method="POST">
+    <form enctype="multipart/form-data" method="GET">
 
     
         
