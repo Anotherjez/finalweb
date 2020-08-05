@@ -101,7 +101,7 @@ include('headerpanel.php');
             if($isEditing){
                 $condition['readonly'] = 'readonly';
             }
-            echo Input('cedula','Cedula','', $condition);        
+            echo Input('cedula','Cedula',$_GET['cedula'], $condition);        
         ?>
         <!-- Nombre -->
         

@@ -42,7 +42,7 @@ if($_POST){
         $value = addslashes($value);
     }        
     
-    extract($_GET);
+    extract($_POST);
 
     $sql = "select * from pacientes where cedula = '{$cedula}'";
 
@@ -55,22 +55,19 @@ if($_POST){
     }
 
 }
+
 include('headerpanel.php');
 
 ?>
 
 <div class="container" style="padding-bottom: 40px;">
     
-    <?php if($isEditing) : echo "<h2>Editar Paciente</h2>"; else : echo "<h2>Añadir Paciente</h2>";endif; ?>
+    <h2>Añadir Paciente</h2>
     <br>    
-    <form enctype="multipart/form-data" method="GET">
-
-    
+    <form enctype="multipart/form-data" method="GET" action="editpaciente.php">
         
         <?= Input('cedula','Cedula','', ['placeholder'=>'Cedula']) ?>
-  
-
-        
+          
         <br>
         <br>
 

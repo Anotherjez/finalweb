@@ -56,7 +56,7 @@ include('headerpanel.php');
 <div class="container">
   <h2>Pacientes</h2>
   <br>
-  <a href="editpaciente.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir Paciente</a>
+  <a href="confirmcedula.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir Paciente</a>
 </div>
 <br>
 
