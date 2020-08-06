@@ -51,7 +51,7 @@ if($_POST){
     $color = "#008000";
 
     $sql = "insert into events(title, color, start, end) 
-    values('{$title}','{$color}',{$start}','{$end}')";
+    values('{$title}','{$color}','{$start}','{$end}')";
     
     
     $rsid = Connection::execute($sql, true);
