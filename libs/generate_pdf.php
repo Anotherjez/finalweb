@@ -10,14 +10,14 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->Image('../assets/images/icon.png',10,-1,70);
+        $this->Image('../assets/images/icon.png',10,-1,50);
         $this->SetFont('Arial','B',13);
         // Move to the right
         $this->Cell(80);
         // Title
         $this->Cell(80,10,'Receta',1,0,'C');
         // Line break
-        $this->Ln(20);
+        $this->Ln(40);
     }
     
     // Page footer
@@ -57,14 +57,15 @@ if($_POST){
     //foter page
     $pdf->AliasNbPages();
     $pdf->SetFont('Arial','B',13);
-    $pdf->Cell(40,12,$display_heading["receta"],1);
+    $pdf->Cell(40,12,$display_heading["receta"],0);
     // foreach($header as $heading) {
     //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
     // }
     foreach($result as $row) {
         $pdf->Ln();
         foreach($row as $column)
-        $pdf->Cell(40,12,$column,1);
+        // $pdf->Cell(40,12,$column,0,1,'C');
+        $pdf->Text(10,70,$column);
     }
     $pdf->Output();
 }
