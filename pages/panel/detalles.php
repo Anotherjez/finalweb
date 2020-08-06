@@ -1,6 +1,6 @@
 <?php
 
-$isEditing = false;
+$isEditing = true;
 
 include('../../libs/panelutils.php');
 
@@ -36,44 +36,7 @@ if(!($user->getRole() == 3)){
     header("Location: dashboard.php");
 }
 
-if($_POST){
-
-    foreach($_POST as &$value){
-        $value = addslashes($value);
-    }        
-    
-    extract($_POST);
-
-    $sql = "select * from pacientes where cedula = '{$cedula}'";
-
-    $objs = Connection::query_arr($sql);
-    if(count($objs) > 0){
-        
-        $sql = "update pacientes set cedula = '{$cedula}', nombre = '{$nombre}', apellido = '{$apellido}', nacimiento = '{$nacimiento}', telefono = '{$telefono}', sangre = '{$sangre}'";
-        $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Editar Paciente", $userid, $guestid);
-    }else{
-        $sql = "insert into pacientes(cedula, nombre, apellido, nacimiento, telefono, sangre) 
-        values('{$cedula}','{$nombre}','{$apellido}','{$nacimiento}','{$telefono}','{$sangre}')";
-    }
-    
-    $rsid = Connection::execute($sql, true);
-    
-    if(!count($objs) > 0){
-        $sql = "select * from pacientes where cedula = '{$cedula}'";
-        $objs = Connection::query_arr($sql);
-        $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Añadir Paciente", $userid, $guestid);
-    }    
-
-    header("Location:dashboard.php");
-
-}
-else if(isset($_GET['cedula'])){
+if(isset($_GET['cedula'])){
 
     $sql = "select * from pacientes where cedula = '{$_GET['cedula']}'";
 
@@ -92,7 +55,7 @@ include('headerpanel.php');
 
 <div class="container" style="padding-bottom: 40px;">
     
-    <?php if($isEditing) : echo "<h2>Editar Paciente</h2>"; else : echo "<h2>Añadir Paciente</h2>";endif; ?>
+    <h2>Este paciente ya existe</h2>
     <br>    
     <form enctype="multipart/form-data" method="POST">
 
@@ -105,18 +68,18 @@ include('headerpanel.php');
         ?>
         <!-- Nombre -->
         
-        <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre']) ?>
-        <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido']) ?>
-        <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date']) ?>
-        <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234']) ?>
-        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre']) ?>
+        <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre', 'readonly'=>'readonly']) ?>
+        <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido', 'readonly'=>'readonly']) ?>
+        <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date', 'readonly'=>'readonly']) ?>
+        <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234', 'readonly'=>'readonly']) ?>
+        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre', 'readonly'=>'readonly']) ?>
 
         
         <br>
         <br>
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
-        <a href="pacientes.php" class="btn btn-secondary">Cancelar</a>
+        
+        <a href="pacientes.php" class="btn btn-secondary">Volver Atras</a>
     </form>
 </div>
 <script>
