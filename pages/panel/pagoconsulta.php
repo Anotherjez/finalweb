@@ -48,7 +48,7 @@ if($_POST){
   $costo = Connection::query_arr($sql);
   $costo = $costo[0];
   $sql = "insert into consultas(title, costo, monto_pagado) 
-  values('{$title}','{$costo['costo']}','{$monto}')";
+  values('{$title}',{$costo['costo']},{$monto})";
 
   Connection::execute($sql);
 
