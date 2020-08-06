@@ -105,7 +105,7 @@ include('headerpanel.php');
     }else{
         echo<<<INFO
         <div class="alert alert-info" role="alert">
-            Aun no hay pacientes registrados        
+            Aun no hay pacientes registrados, No ha ingresado un mes o Nadie Cumple Años ese mes      
         </div>
         INFO;
     } ?>
