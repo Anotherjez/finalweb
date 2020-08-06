@@ -31,14 +31,8 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
-if(!($user->getRole() == 1)){
+if(!($user->getRole() == 2)){
   header("Location: dashboard.php");
-}
-
-if(!isset($_GET['log'])){
-
-    header("Location: user.php");
-
 }
 
 include('headerpanel.php');
@@ -46,26 +40,15 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Logs de Usuarios</h2>
+  <h2>Consultar cita proxima</h2>
 </div>
 <br>
+<form action="showcita.php" method="get">
+    <label>Ingrese una fecha</label>
+    <input type="date" name="fecha" id="fecha" class="form-control" style="margin-bottom:20px;">
+    
+    <button type="submit" class="btn btn-primary">Consultar</button>
+</form>
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Usuario ID</th>
-            <th scope="col">Huesped ID</th>
-            <th scope="col">Direccion IP</th>
-            <th scope="col">Accion</th>
-            <th scope="col">Fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php GetLogs($_GET['log']); ?>
-    </tbody>
-    </table>
-<div>
 
 <?php include('../footer.php'); ?>

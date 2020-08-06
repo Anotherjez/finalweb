@@ -31,7 +31,7 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
-if(!($user->getRole() == 3)){
+if(!($user->getRole() == 2)){
   header("Location: dashboard.php");
 }
 
@@ -55,8 +55,6 @@ include('headerpanel.php');
 
 <div class="container">
   <h2>Pacientes</h2>
-  <br>
-  <a href="confirmcedula.php" class="btn btn-success"><i class="fas fa-user-plus"></i> Añadir Paciente</a>
 </div>
 <br>
 
@@ -75,26 +73,9 @@ include('headerpanel.php');
         </tr>
     </thead>
     <tbody>
-        <?php GetPacientes(); ?>
+        <?php GetPacientesVisitas(); ?>
     </tbody>
     </table>
 <div>
-
-<script>
-
-  function DeletePaciente(e){
-    tr = e.parentNode.parentNode;
-    if(confirm('¿Esta seguro que desea eliminar?')){
-      value = tr.getAttribute('index');
-      $.ajax({
-        url: 'pacientes.php',
-        type: 'POST',
-        dataType: 'html',
-        data: {'cedula': value}
-      });
-    } 
-  }
-  
-</script>
 
 <?php include('../footer.php'); ?>

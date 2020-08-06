@@ -51,9 +51,9 @@ if($_POST){
         
         $sql = "update pacientes set cedula = '{$cedula}', nombre = '{$nombre}', apellido = '{$apellido}', nacimiento = '{$nacimiento}', telefono = '{$telefono}', sangre = '{$sangre}'";
         $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Editar Paciente", $userid, $guestid);
+        $pacienteid = $objs[0];
+        $pacienteid = $pacienteid['id'];
+        Write_Log("Editar Paciente", $userid, $pacienteid);
     }else{
         $sql = "insert into pacientes(cedula, nombre, apellido, nacimiento, telefono, sangre) 
         values('{$cedula}','{$nombre}','{$apellido}','{$nacimiento}','{$telefono}','{$sangre}')";
@@ -65,12 +65,12 @@ if($_POST){
         $sql = "select * from pacientes where cedula = '{$cedula}'";
         $objs = Connection::query_arr($sql);
         $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Añadir Paciente", $userid, $guestid);
+        $pacienteid = $objs[0];
+        $pacienteid = $pacienteid['id'];
+        Write_Log("Añadir Paciente", $userid, $pacienteid);
     }    
 
-    header("Location:dashboard.php");
+    header("Location:pacientes.php");
 
 }
 else if(isset($_GET['cedula'])){

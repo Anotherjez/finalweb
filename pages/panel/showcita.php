@@ -1,5 +1,7 @@
 <?php
 
+$data;
+
 include('../../libs/panelutils.php');
 
 Connection::testconnection();
@@ -31,13 +33,19 @@ if(isset($_SESSION['user'])){
     header("Location: ../login.php");
 }
 
-if(!($user->getRole() == 1)){
+if(!($user->getRole() == 2)){
   header("Location: dashboard.php");
 }
+if(!isset($_GET['fecha'])){
 
-if(!isset($_GET['log'])){
+    header("Location: consultarcita.php");
 
-    header("Location: user.php");
+}
+if(isset($_GET['fecha'])){
+
+    $sql = "select * from events where DATEDIFF(start,'{$_GET['fecha']}') >=0 LIMIT 1";
+
+    $objs = Connection::query_arr($sql);
 
 }
 
@@ -46,26 +54,19 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Logs de Usuarios</h2>
+    <h2>Proxima cita</h2>
+    <br>
+    <? if($objs == null): ?>
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">No hay fechas proximas!</h4>
+            <p>Al parecer no hay fechas proximas a las consultadas.</p>
+        </div>
+    <? else: ?>
+
+        <h4>Titulo: <?= $objs[0]['title'] ?></h4>
+        <h4>Fecha de inicio: <?= $objs[0]['start'] ?></h4>
+        <h4>Fecha de fin: <?= $objs[0]['end'] ?></h4>        
+        
+    <? endif; ?>
 </div>
-<br>
-
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Usuario ID</th>
-            <th scope="col">Huesped ID</th>
-            <th scope="col">Direccion IP</th>
-            <th scope="col">Accion</th>
-            <th scope="col">Fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php GetLogs($_GET['log']); ?>
-    </tbody>
-    </table>
-<div>
-
 <?php include('../footer.php'); ?>
