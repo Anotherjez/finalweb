@@ -47,13 +47,13 @@ $time  = strtotime($end);
 
 $month = date('m',$time);
 
-  $sql = "Select * from pacientes WHERE ";
+  $sql = "Select * from pacientes WHERE EXTRACT(MONTH FROM nacimiento) = '{$month}'";
 
   $data = Connection::query_arr($sql);
   $num = 0;
 
 }
-
+include('headerpanel.php');
 ?>
 
 <div class="container">
