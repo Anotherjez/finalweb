@@ -107,7 +107,7 @@ include('headerpanel.php');
         
         <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
         <?= Input('color','Color','', ['placeholder'=>'Color']) ?>
-        <?= Input('fecha','Hora de comienzo','', ['type'=>'datetime']) ?>
+        <?= Input('fecha','Hora de comienzo','', ['type'=>'date']) ?>
         <?= Input('start','Hora de comienzo','', ['type'=>'time']) ?>
         <?= Input('end','Hora de salida','', ['type'=>'time']) ?>
      
