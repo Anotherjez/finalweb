@@ -6,7 +6,7 @@ include_once('utils.php');
 
 class PDF extends FPDF
 {
-// Page header
+    // Page header
     function Header()
     {
         // Logo
@@ -15,7 +15,7 @@ class PDF extends FPDF
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(80,10,'Receta',1,0,'C');
+        $this->Cell(80,10,$this->title,0,0,'C');
         // Line break
         $this->Ln(40);
     }
@@ -40,24 +40,26 @@ if($_POST){
     
     extract($_POST);
 
-    $pdf = new PDF();
+    $pdf = new PDF($title = "Receta");
     
     // Este if es para diferenciarlo de los demas reportes
     
-    $display_heading = array('receta'=>'Receta');
+    if($type == 'receta'){
+        $display_heading = array('receta'=>'Receta');
 
-    $sql = "select receta from visitas where id = {$id}";
-    $result = Connection::query_arr($sql);
-    $header = Connection::query_arr("SHOW columns FROM visitas");
-    $header = $header[4];
+        $sql = "select receta from visitas where id = {$id}";
+        $result = Connection::query_arr($sql);
+        $header = Connection::query_arr("SHOW columns FROM visitas");
+        $header = $header[4];
+        
+        //header
+        $pdf->AddPage();
+        //foter page
+        $pdf->AliasNbPages();
+        $pdf->SetFont('Arial','B',13);
+        $pdf->Cell(40,12,$display_heading["receta"],0);
+    }
     
-    
-    //header
-    $pdf->AddPage();
-    //foter page
-    $pdf->AliasNbPages();
-    $pdf->SetFont('Arial','B',13);
-    $pdf->Cell(40,12,$display_heading["receta"],0);
     // foreach($header as $heading) {
     //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
     // }
