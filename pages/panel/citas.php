@@ -47,28 +47,24 @@ if($_POST){
     $sql = "select * from events where title = '{$title}'";
 
     $objs = Connection::query_arr($sql);
-    if(count($objs) > 0){
-        
-        $sql = "update events set title = '{$title}', start = '{$start}', end = '{$end}'";
-        $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Editar Cita", $userid, $guestid);
-    }else{
-        $sql = "insert into events(title, color, start, end) 
-        values('{$title}','{$start}','{$end}')";
-    }
+
+    $start = $fecha + ' ' + $start;
+    $end = $fecha + ' ' + $end;
+
+    $sql = "insert into events(title, color, start, end) 
+    values('{$title}','{$start}','{$end}')";
+    
     
     $rsid = Connection::execute($sql, true);
     
-    if(!count($objs) > 0){
-        $sql = "select * from events where title = '{$title}'";
-        $objs = Connection::query_arr($sql);
-        $userid = $user->getId();
-        $guestid = $objs[0];
-        $guestid = $guestid['id'];
-        Write_Log("Añadir Cita", $userid, $guestid);
-    }    
+
+    $sql = "select * from events where title = '{$title}'";
+    $objs = Connection::query_arr($sql);
+    $userid = $user->getId();
+    $guestid = $objs[0];
+    $guestid = $guestid['id'];
+    Write_Log("Añadir Cita", $userid, $guestid);
+     
 
     header("Location:dashboard.php");
 
@@ -106,7 +102,6 @@ include('headerpanel.php');
         <!-- Nombre -->
         
         <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
-        <?= Input('color','Color','', ['placeholder'=>'Color']) ?>
         <?= Input('fecha','Hora de comienzo','', ['type'=>'date']) ?>
         <?= Input('start','Hora de comienzo','', ['type'=>'time']) ?>
         <?= Input('end','Hora de salida','', ['type'=>'time']) ?>
