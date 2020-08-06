@@ -40,25 +40,27 @@ if($_POST){
     
     extract($_POST);
 
-    // Este if es para diferenciarlo de los demas reportes
-    if($type == 'receta'){
-        $display_heading = array('receta'=>'Receta');
-    
-        $sql = "select receta from visitas where id = {$id}";
-        $result = Connection::query_arr($sql);
-        $header = Connection::query_arr("SHOW columns FROM visitas");
-        $header = $header[4];
-    }
-    var_dump($header);
     $pdf = new PDF();
+    
+    // Este if es para diferenciarlo de los demas reportes
+    
+    $display_heading = array('receta'=>'Receta');
+
+    $sql = "select receta from visitas where id = {$id}";
+    $result = Connection::query_arr($sql);
+    $header = Connection::query_arr("SHOW columns FROM visitas");
+    $header = $header[4];
+    
+    
     //header
     $pdf->AddPage();
     //foter page
     $pdf->AliasNbPages();
-    $pdf->SetFont('Arial','B',12);
-    foreach($header as $heading) {
-        $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
-    }
+    $pdf->SetFont('Arial','B',13);
+    $pdf->Cell(40,12,$display_heading["receta"],1);
+    // foreach($header as $heading) {
+    //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
+    // }
     foreach($result as $row) {
         $pdf->Ln();
         foreach($row as $column)
