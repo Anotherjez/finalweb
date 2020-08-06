@@ -33,7 +33,8 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
         id int(11) not null primary key auto_increment,
         title varchar(80) not null,
         costo double,
-        monto_pagado double
+        monto_pagado double,
+        fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         )";
 
         mysqli_query($con, $sql);

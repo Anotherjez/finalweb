@@ -6,6 +6,34 @@ if(file_exists("../../libs/configx.php")){
 
 include('../../libs/connection.php');
 
+function GetPagos()
+{
+    $sql = "Select * from consultas";
+
+    $data = Connection::query_arr($sql);
+    $num = 0;
+
+    if(count($data) > 0){
+        foreach ($data as $consulta) {
+            $num = $num + 1;
+            echo<<<CONSULTA
+                <th scope="row">{$num}</th>
+                <td>{$consulta['title']}</td>
+                <td>{$consulta['costo']}</td>
+                <td>{$consulta['monto_pagado']}</td>
+                <td>{$consulta['fecha']}</td>
+            </tr>
+            CONSULTA;
+        }
+    }else{
+        echo<<<INFO
+        <div class="alert alert-info" role="alert">
+            Aun no hay consultas registradas
+        </div>
+        INFO;
+    }
+}
+
 function GetPacientesVisitas(){
     $sql = "Select * from pacientes";
 
