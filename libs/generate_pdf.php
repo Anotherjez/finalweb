@@ -58,6 +58,12 @@ if($_POST){
         $pdf->AliasNbPages();
         $pdf->SetFont('Arial','B',13);
         $pdf->Cell(40,12,$display_heading["receta"],0);
+        foreach($result as $row) {
+            $pdf->Ln();
+        foreach($row as $column)
+            $pdf->Cell(60,12,$column,0,'C');
+            }
+        $pdf->Output();
     }
 
     if($type == 'citasdia'){
@@ -80,17 +86,14 @@ if($_POST){
         foreach($header as $heading) {
             $pdf->Cell(60,12,$display_heading[$heading['Field']],1);
         }
+        foreach($result as $row) {
+            $pdf->Ln();
+        foreach($row as $column)
+            $pdf->Cell(60,12,$column,1);
+            }
+        $pdf->Output();
     }
 
-    
-    // foreach($header as $heading) {
-    //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
-    // }
-    foreach($result as $row) {
-        $pdf->Ln();
-    foreach($row as $column)
-        $pdf->Cell(60,12,$column,1);
-        }
-    $pdf->Output();
+
 }
 ?>
