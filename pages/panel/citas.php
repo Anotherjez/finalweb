@@ -44,9 +44,7 @@ if($_POST){
     
     extract($_POST);
 
-    $sql = "select * from events where title = '{$title}'";
 
-    $objs = Connection::query_arr($sql);
 
     $start = $fecha + ' ' + $start;
     $end = $fecha + ' ' + $end;
@@ -83,7 +81,7 @@ include('headerpanel.php');
 
         
         <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
-        <?= Input('fecha','Hora de comienzo','', ['type'=>'date']) ?>
+        <?= Input('fecha','Dia de la cita','', ['type'=>'date']) ?>
         <?= Input('start','Hora de comienzo','', ['type'=>'time']) ?>
         <?= Input('end','Hora de salida','', ['type'=>'time']) ?>
      
