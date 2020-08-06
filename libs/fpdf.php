@@ -66,13 +66,15 @@ protected $ZoomMode;           // zoom display mode
 protected $LayoutMode;         // layout display mode
 protected $metadata;           // document properties
 protected $PDFVersion;         // PDF version number
+protected $title;
 
 /*******************************************************************************
 *                               Public methods                                 *
 *******************************************************************************/
 
-function __construct($orientation='P', $unit='mm', $size='A4')
+function __construct($title, $orientation='P', $unit='mm', $size='A4')
 {
+	$this->title = $title;
 	// Some checks
 	$this->_dochecks();
 	// Initialization of properties
