@@ -39,70 +39,82 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Citas</h2>
   <div class="row">
         <div class="col-lg-12 text-center">
-            <h1>FullCalendar PHP MySQL</h1>
-            <p class="lead">Completa con rutas de archivo predefinidas que no tendrás que cambiar!</p>
+            <h1>Citas</h1>
             <div id="calendar" class="col-centered">
             </div>
         </div>        
     </div>
 </div>
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="ModalBody">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../../assets/js/main.min.js"></script>
 <script src="../../assets/js/locales/es.js"></script>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        editable: false,
+        selectable: true,
+        eventClick: function(info) {
+            // Titulo
+            document.getElementById('ModalLabel').innerHTML = info['event']['_def']['title'];
+            // Body
+            document.getElementById('ModalBody').innerHTML = "<strong>Fecha de inicio:</strong> " + info['event']['_instance']['range']['start'] + "<br>" + "<strong>Fecha de fin:</strong> " + info['event']['_instance']['range']['end'];
+            $('#Modal').modal({
+                show: true
+            })
+        },
+        events: [
+        <?php foreach($events as $event): 
+        
+            $start = explode(" ", $event['start']);
+            $end = explode(" ", $event['end']);
+            if($start[1] == '00:00:00'){
+                $start = $start[0];
+            }else{
+                $start = $event['start'];
+            }
+            if($end[1] == '00:00:00'){
+                $end = $end[0];
+            }else{
+                $end = $event['end'];
+            }
+        ?>
+            {
+                id: '<?php echo $event['id']; ?>',
+                title: '<?php echo $event['title']; ?>',
+                start: '<?php echo $start; ?>',
+                end: '<?php echo $end; ?>',
+                color: '<?php echo $event['color']; ?>',
+            },
+        <?php endforeach; ?>
+        ]
+    });
+    calendar.render();
+});
  
- $(document).ready(function() {
-
-     var date = new Date();
-    var yyyy = date.getFullYear().toString();
-    var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
-    var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
-     
-     $('#calendar').fullCalendar({
-         header: {
-              language: 'es',
-             left: 'prev,next today',
-             center: 'title',
-             right: 'month,basicWeek,basicDay',
-
-         },
-         defaultDate: yyyy+"-"+mm+"-"+dd,
-         editable: true,
-         eventLimit: true, // allow "more" link when too many events
-         selectable: true,
-         selectHelper: true,
-         
-         events: [
-         <?php foreach($events as $event): 
-         
-             $start = explode(" ", $event['start']);
-             $end = explode(" ", $event['end']);
-             if($start[1] == '00:00:00'){
-                 $start = $start[0];
-             }else{
-                 $start = $event['start'];
-             }
-             if($end[1] == '00:00:00'){
-                 $end = $end[0];
-             }else{
-                 $end = $event['end'];
-             }
-         ?>
-             {
-                 id: '<?php echo $event['id']; ?>',
-                 title: '<?php echo $event['title']; ?>',
-                 start: '<?php echo $start; ?>',
-                 end: '<?php echo $end; ?>',
-                 color: '<?php echo $event['color']; ?>',
-             },
-         <?php endforeach; ?>
-         ]
-     });     
-     
- });
-
 </script>
 <?php include('../footer.php'); ?>
