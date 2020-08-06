@@ -42,7 +42,7 @@ include('headerpanel.php');
   <div class="row">
         <div class="col-lg-12 text-center">
             <h1>Citas</h1>
-            <div id="calendar" class="col-centered">
+            <div id="calendar" class="col-centered" style="margin-bottom:60px;">
             </div>
         </div>        
     </div>

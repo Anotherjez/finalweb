@@ -63,9 +63,9 @@ include('headerpanel.php');
         </div>
     <? else: ?>
 
-        <h4>Titulo: <?= $objs[0]['title'] ?></h4>
-        <h4>Fecha de inicio: <?= $objs[0]['start'] ?></h4>
-        <h4>Fecha de fin: <?= $objs[0]['end'] ?></h4>        
+    <h4>Titulo: <?= $objs[0]['title'] ?></h4>
+    <h4>Fecha de inicio: <?= $objs[0]['start'] ?></h4>
+    <h4>Fecha de fin: <?= $objs[0]['end'] ?></h4>        
         
     <? endif; ?>
 </div>
