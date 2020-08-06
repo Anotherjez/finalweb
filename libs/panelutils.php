@@ -273,7 +273,7 @@ function Input($id, $label, $value="", $opts=[]){
     
 }
 
-function Write_log($message, $id = 0, $guestid)
+function Write_log($message, $id = 1, $pacienteid = '')
 {
   if( ($remote_addr = $_SERVER['REMOTE_ADDR']) == '') {
     $remote_addr = "REMOTE_ADDR_UNKNOWN";
@@ -288,7 +288,7 @@ function Write_log($message, $id = 0, $guestid)
     $request_uri.= "REQUEST_URI_UNKNOWN";
   }
 
-  $sql = "INSERT INTO user_log(user_id, paciente_id, remote_addr, request_uri, message) VALUES({$id}, {$guestid}, '{$remote_addr}', '{$request_uri}','{$message}')";
+  $sql = "INSERT INTO user_log(user_id, paciente_id, remote_addr, request_uri, message) VALUES({$id}, {$pacienteid}, '{$remote_addr}', '{$request_uri}','{$message}')";
   Connection::execute($sql);
 }
 

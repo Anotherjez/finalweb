@@ -39,12 +39,12 @@ if($_POST){
     }        
     
     extract($_POST);
-
-    $pdf = new PDF($title = "Receta");
     
     // Este if es para diferenciarlo de los demas reportes
     
     if($type == 'receta'){
+
+        $pdf = new PDF($title = "Receta");
         $display_heading = array('receta'=>'Receta');
 
         $sql = "select receta from visitas where id = {$id}";
@@ -59,6 +59,7 @@ if($_POST){
         $pdf->SetFont('Arial','B',13);
         $pdf->Cell(40,12,$display_heading["receta"],0);
     }
+
     
     // foreach($header as $heading) {
     //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
