@@ -50,9 +50,10 @@ if($_POST){
 
     $start = $fecha + ' ' + $start;
     $end = $fecha + ' ' + $end;
+    $color = "#008000";
 
     $sql = "insert into events(title, color, start, end) 
-    values('{$title}','{$start}','{$end}')";
+    values('{$title}','{$color}',{$start}','{$end}')";
     
     
     $rsid = Connection::execute($sql, true);
@@ -69,18 +70,6 @@ if($_POST){
     header("Location:dashboard.php");
 
 }
-else if(isset($_GET['cedula'])){
-
-    $sql = "select * from pacientes where cedula = '{$_GET['cedula']}'";
-
-    $objs = Connection::query_arr($sql);
-    
-    if(count($objs) > 0){
-        $data = $objs[0];
-        $_POST = $data;
-        $isEditing = true;
-    }
-}
 
 include('headerpanel.php');
 
@@ -88,18 +77,10 @@ include('headerpanel.php');
 
 <div class="container" style="padding-bottom: 40px;">
     
-    <?php if($isEditing) : echo "<h2>Crear Cita</h2>"; else : echo "<h2>Crear Cita</h2>";endif; ?>
+    <h2>Crear Cita</h2>
     <br>    
     <form enctype="multipart/form-data" method="POST">
 
-        <?php 
-            $condition = ['placeholder'=>'Cedula'];
-            if($isEditing){
-                $condition['readonly'] = 'readonly';
-            }
-               
-        ?>
-        <!-- Nombre -->
         
         <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
         <?= Input('fecha','Hora de comienzo','', ['type'=>'date']) ?>
@@ -115,14 +96,5 @@ include('headerpanel.php');
         <a href="pacientes.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-<script>
-    $(document).ready(function(){
-        $('.pasaporte').mask('AA0000000');
-        $('.room').mask('000');
-        $('.telefono').mask('000000000000000');
-    });
-</script>
-<script src="../../assets/js/jquery.mask.min.js"></script>
-<script src="../../assets/js/guests.js"></script>
 
 <?php include('../footer.php'); ?>
