@@ -1,6 +1,6 @@
 <?php
 
-$isEditing = true;
+$isEditing = false;
 
 include('../../libs/panelutils.php');
 
@@ -36,7 +36,44 @@ if(!($user->getRole() == 3)){
     header("Location: dashboard.php");
 }
 
-if(isset($_GET['cedula'])){
+if($_POST){
+
+    foreach($_POST as &$value){
+        $value = addslashes($value);
+    }        
+    
+    extract($_POST);
+
+    $sql = "select * from events where title = '{$title}'";
+
+    $objs = Connection::query_arr($sql);
+    if(count($objs) > 0){
+        
+        $sql = "update events set title = '{$title}', start = '{$start}', end = '{$end}'";
+        $userid = $user->getId();
+        $guestid = $objs[0];
+        $guestid = $guestid['id'];
+        Write_Log("Editar Cita", $userid, $guestid);
+    }else{
+        $sql = "insert into events(title, start, end, nacimiento, telefono, sangre) 
+        values('{$title}','{$start}','{$end}')";
+    }
+    
+    $rsid = Connection::execute($sql, true);
+    
+    if(!count($objs) > 0){
+        $sql = "select * from events where title = '{$title}'";
+        $objs = Connection::query_arr($sql);
+        $userid = $user->getId();
+        $guestid = $objs[0];
+        $guestid = $guestid['id'];
+        Write_Log("Añadir Cita", $userid, $guestid);
+    }    
+
+    header("Location:dashboard.php");
+
+}
+else if(isset($_GET['cedula'])){
 
     $sql = "select * from pacientes where cedula = '{$_GET['cedula']}'";
 
@@ -55,7 +92,7 @@ include('headerpanel.php');
 
 <div class="container" style="padding-bottom: 40px;">
     
-    <h2>Este paciente ya existe</h2>
+    <?php if($isEditing) : echo "<h2>Crear Cita</h2>"; else : echo "<h2>Crear Cita</h2>";endif; ?>
     <br>    
     <form enctype="multipart/form-data" method="POST">
 
@@ -64,22 +101,22 @@ include('headerpanel.php');
             if($isEditing){
                 $condition['readonly'] = 'readonly';
             }
-            echo Input('cedula','Cedula',$_GET['cedula'], $condition);        
+               
         ?>
         <!-- Nombre -->
         
-        <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre', 'readonly'=>'readonly']) ?>
-        <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido', 'readonly'=>'readonly']) ?>
-        <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date', 'readonly'=>'readonly']) ?>
-        <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234', 'readonly'=>'readonly']) ?>
-        <?= Input('sangre','Tipo de Sangre','', ['placeholder'=>'Tipo de Sangre', 'readonly'=>'readonly']) ?>
+        <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
+
+        <?= Input('start','Hora de comienzo','', ['type'=>'time']) ?>
+        <?= Input('end','Hora de salida','', ['type'=>'time']) ?>
+     
 
         
         <br>
         <br>
 
-        
-        <a href="pacientes.php" class="btn btn-secondary">Volver Atras</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="pacientes.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 <script>
