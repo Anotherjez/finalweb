@@ -46,8 +46,8 @@ if($_POST){
 
 
 
-    $start = $fecha + ' ' + $start;
-    $end = $fecha + ' ' + $end;
+    $start = $fecha . ' ' . $start;
+    $end = $fecha . ' ' . $end;
     $color = "#008000";
 
     $sql = "insert into events(title, color, start, end) 
@@ -55,7 +55,7 @@ if($_POST){
     
     
     $rsid = Connection::execute($sql, true);
-    
+ 
 
     $sql = "select * from events where title = '{$title}'";
     $objs = Connection::query_arr($sql);
@@ -65,7 +65,7 @@ if($_POST){
     Write_Log("Añadir Cita", $userid, $guestid);
      
 
-    header("Location:dashboard.php");
+    //header("Location:dashboard.php");
 
 }
 

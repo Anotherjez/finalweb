@@ -110,6 +110,37 @@ function GetPacientes()
         INFO;
     }
 }
+function GetPacientesC()
+{
+    $sql = "Select * from pacientes";
+
+    $data = Connection::query_arr($sql);
+    $num = 0;
+
+    if(count($data) > 0){
+        foreach ($data as $paciente) {
+            $num = $num + 1;
+            echo<<<PACIENTE
+                <tr index="{$paciente['cedula']}">
+                <th scope="row">{$num}</th>
+               
+                <td>{$paciente['nombre']}</td>
+                <td>{$paciente['apellido']}</td>
+                <td>{$paciente['nacimiento']}</td>
+                <td>{$paciente['telefono']}</td>
+              
+            
+            </tr>
+            PACIENTE;
+        }
+    }else{
+        echo<<<INFO
+        <div class="alert alert-info" role="alert">
+            Aun no hay pacientes registrados        
+        </div>
+        INFO;
+    }
+}
 function GetUsers()
 {
     $sql = "Select * from users";
