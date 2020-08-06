@@ -60,16 +60,37 @@ if($_POST){
         $pdf->Cell(40,12,$display_heading["receta"],0);
     }
 
+    if($type == 'citasdia'){
+        $mytitle = "Citas del {$fecha}";
+        $pdf = new PDF($title = $mytitle);
+        $display_heading = array('title'=>'Titulo','start'=>'Fecha de inicio','end'=>'Fecha de fin');
+
+        $sql = "select title, start, end from events where DATEDIFF(start,'{$fecha}') = 0";
+        $result = Connection::query_arr($sql);
+        $header = Connection::query_arr("SHOW columns FROM events");
+        unset($header[0]);
+        unset($header[2]);
+        
+        //header
+        $pdf->AddPage();
+        //foter page
+        $pdf->AliasNbPages();
+        $pdf->SetFont('Arial','B',13);
+            
+        foreach($header as $heading) {
+            $pdf->Cell(60,12,$display_heading[$heading['Field']],1);
+        }
+    }
+
     
     // foreach($header as $heading) {
     //     $pdf->Cell(40,12,$display_heading[$heading['Field']],1);
     // }
     foreach($result as $row) {
         $pdf->Ln();
-        foreach($row as $column)
-        // $pdf->Cell(40,12,$column,0,1,'C');
-        $pdf->Text(10,70,$column);
-    }
+    foreach($row as $column)
+        $pdf->Cell(60,12,$column,1);
+        }
     $pdf->Output();
 }
 ?>
