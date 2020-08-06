@@ -55,7 +55,7 @@ if($_POST){
         $guestid = $guestid['id'];
         Write_Log("Editar Cita", $userid, $guestid);
     }else{
-        $sql = "insert into events(title, start, end, nacimiento, telefono, sangre) 
+        $sql = "insert into events(title, color, start, end) 
         values('{$title}','{$start}','{$end}')";
     }
     
@@ -106,7 +106,8 @@ include('headerpanel.php');
         <!-- Nombre -->
         
         <?= Input('title','Titulo de la Cita','', ['placeholder'=>'Ex: Cita con el Dr.Hernandez para revisar.....']) ?>
-
+        <?= Input('color','Color','', ['placeholder'=>'Color']) ?>
+        <?= Input('fecha','Hora de comienzo','', ['type'=>'datetime']) ?>
         <?= Input('start','Hora de comienzo','', ['type'=>'time']) ?>
         <?= Input('end','Hora de salida','', ['type'=>'time']) ?>
      
