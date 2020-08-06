@@ -18,7 +18,25 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
         $sql = "CREATE DATABASE {$dbname};";
         mysqli_query($con, $sql);
     
-        mysqli_query($con, "use {$dbname}");            
+        mysqli_query($con, "use {$dbname}");
+        
+        // Costo Consultas
+        $sql = "CREATE TABLE costoconsultas(
+        id int(11) not null primary key auto_increment,
+        costo double not null
+        )";
+
+        mysqli_query($con, $sql);
+
+        // Consultas
+        $sql = "CREATE TABLE consultas(
+        id int(11) not null primary key auto_increment,
+        title varchar(80) not null,
+        costo double,
+        monto_pagado double
+        )";
+
+        mysqli_query($con, $sql);
     
         // Pacientes
         $sql = "CREATE TABLE pacientes(
@@ -87,6 +105,10 @@ if(isset($_POST['password1']) && isset($_POST['password2'])){
             REFERENCES users(id),
         FOREIGN KEY(paciente_id)
             REFERENCES pacientes(id));";
+        
+        mysqli_query($con, $sql);
+
+        $sql = "insert into costoconsultas(costo) VALUES(500.00)";
         
         mysqli_query($con, $sql);
     
