@@ -96,14 +96,12 @@ if($_POST){
     if($type == 'pago'){
         $mytitle = "FACTURA DE PAGO DE CONSULTA";
         $pdf = new PDF($title = $mytitle);
-        $display_heading = array('title'=>'Titulo','start'=>'Fecha de inicio','end'=>'Fecha de fin');
+        $display_heading = array('title'=>'Titulo','costo'=>'Costo','monto_pagado'=>'Monto pagado', 'fecha'=>'Fecha');
 
-        $sql = "select * from consultas order by id desc LIMIT 1;
-        ";
+        $sql = "select title, costo, monto_pagado, fecha from consultas order by id desc LIMIT 1";
         $result = Connection::query_arr($sql);
         $header = Connection::query_arr("SHOW columns FROM consultas");
         unset($header[0]);
-        unset($header[2]);
         
         //header
         $pdf->AddPage();
@@ -112,12 +110,12 @@ if($_POST){
         $pdf->SetFont('Arial','B',13);
             
         foreach($header as $heading) {
-            $pdf->Cell(60,12,$display_heading[$heading['Field']],1);
+            $pdf->Cell(50,12,$display_heading[$heading['Field']],1);
         }
         foreach($result as $row) {
             $pdf->Ln();
         foreach($row as $column)
-            $pdf->Cell(60,12,$column,1);
+            $pdf->Cell(50,12,$column,1);
             }
         $pdf->Output();
     }
