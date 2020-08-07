@@ -67,7 +67,7 @@ include('headerpanel.php');
   <h4>Precio por consulta: RD$<?= $costo['costo'] ?></h4>
   <br>    
   <form enctype="multipart/form-data" method="POST">
-    <?= Input('title','Titulo de la Consulta','', ['placeholder'=>'Ex: Consulta con el Dr.Perez por las sgtes razones.....']) ?>
+    <?= Input('title','Titulo de la Consulta','', ['placeholder'=>'Ex: Consulta con el Dr.Perez por las sgtes razones...']) ?>
     <div class="form-group">
       <label>Monto a pagar</label>
       <input required type="number" value="0" class="form-control" id="monto" name="monto" max=<?= $costo['costo'] ?>>
