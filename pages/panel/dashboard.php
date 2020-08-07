@@ -61,28 +61,28 @@ include('headerpanel.php');
   <h2>Dashboard</h2>
   <br>
   <div class="card-deck">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" data-aos="fade-right" data-aos-duration="1000">
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-heartbeat" style="color: red;"></i> Pacientes registrados</h5>
         <p class="card-text">Hay <?= $pacientes[0]['COUNT(*)'] ?> pacientes registrados.</p>
       </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" data-aos="fade-right" data-aos-duration="1000">
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-calendar-alt" style="color: gray;"></i> Citas</h5>
         <p class="card-text">Hay <?= $citas[0]['COUNT(*)'] ?> citas registradas.</p>
       </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" data-aos="fade-left" data-aos-duration="1000">
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-hand-holding-usd" style="color: green;"></i> Recaudado hoy</h5>
         <p class="card-text">Ingresos de hoy: RD$<?= $hoy['SUM(costo)'] ?></p>
       </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" data-aos="fade-left" data-aos-duration="1000">
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-wallet" style="color: green;"></i> Ingresos totales</h5>
         <p class="card-text">Ingresos totales: RD$<?= $total['SUM(costo)'] ?></p>
@@ -91,4 +91,8 @@ include('headerpanel.php');
   </div>
 </div>
 
+<script src="../../assets/js/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <?php include('footerpanel.php'); ?>

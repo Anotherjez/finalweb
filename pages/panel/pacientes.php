@@ -61,7 +61,7 @@ include('headerpanel.php');
 </div>
 <br>
 
-<div class="table-responsive">
+<div class="table-responsive" data-aos="fade-up" data-aos-duration="1000">
     <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -96,5 +96,8 @@ include('headerpanel.php');
   }
   
 </script>
-
+<script src="../../assets/js/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <?php include('../footer.php'); ?>
