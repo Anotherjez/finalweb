@@ -23,12 +23,12 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="nav">
-      <? if ($user->isUser()): ?>
+      <?php if ($user->isUser()): ?>
         <a class="btn btn-primary" href="panel/dashboard.php"><span class="font-weight-bold">Panel</span></a>
         <a class='nav-item nav-link' href='logout.php'>Cerrar sesion</a>
-      <? else: ?>
+      <?php else: ?>
         <a class='nav-item nav-link' href='login.php'>Iniciar sesion</a>
-      <? endif; ?>
+      <?php endif; ?>
     </div>
   </div>
   </nav>

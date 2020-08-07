@@ -25,7 +25,7 @@ if(isset($_SESSION['user'])){
     }
 
 }else{
-    header("Location:pages/login.php");
+    header("Location:pages/index.php");
 }
 
 ?>

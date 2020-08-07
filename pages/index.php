@@ -53,10 +53,7 @@ include('header.php');
     </div>
     <div class="col landingText" data-aos="fade-left" data-aos-duration="1200">
         <h2>Consulta con nosotros</h2>
-        <h3>Lets all work together to put an end to this pandemic. <br> Help to stop the spread.</h3>
-        <div class="btn">
-            <a href="#">Learn more</a>
-        </div>
+        <h3>Ofrecemos el mejor servicio de acuerdo a tus necesidades.</h3>
     </div>
     </div>
 </div>

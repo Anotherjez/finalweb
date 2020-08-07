@@ -25,11 +25,11 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="nav">
       <a class="nav-item nav-link" href="../index.php">Pagina principal</a>
-      <? if ($user->isUser()): ?>
+      <?php if ($user->isUser()): ?>
         <a class='nav-item nav-link' href='../logout.php'>Cerrar sesion</a>
-      <? else: ?>
+      <?php else: ?>
         <a class='nav-item nav-link' href='../login.php'>Iniciar sesion</a>
-      <? endif; ?>
+      <?php endif; ?>
     </div>
   </div>
 </nav>
@@ -41,218 +41,218 @@
         <ul class="nav flex-column">
           <li class="nav-item">
           <!-- Dashboard -->
-          <? if(strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false): ?>
+          <?php if(strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false): ?>
             <a class="nav-link active" href="dashboard.php">
             <i class="fas fa-tachometer-alt"></i>
             Dashboard <span class="sr-only">(current)</span>
             </a>
-          <? else: ?>
+          <?php else: ?>
             <a class="nav-link" href="dashboard.php">
             <i class="fas fa-tachometer-alt"></i>
             Dashboard
             </a>
-          <? endif; ?>
+          <?php endif; ?>
           </li>
           <!-- Usuarios -->
-          <? if($user->getRole() == 1): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'users') !== false): ?>
+          <?php if($user->getRole() == 1): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'users') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="users.php">
                 <i class="fas fa-users"></i>
                   Usuarios <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="users.php">
                 <i class="fas fa-users"></i>
                   Usuarios
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?>
+            <?php endif; ?>
+          <?php endif; ?>
           <!-- Calendario -->
-          <? if(strpos($_SERVER['REQUEST_URI'], 'calendario') !== false): ?>
+          <?php if(strpos($_SERVER['REQUEST_URI'], 'calendario') !== false): ?>
             <li class="nav-item">
               <a class="nav-link active" href="calendario.php">
               <i class="fas fa-calendar-alt"></i>
               Consultar citas <span class="sr-only">(current)</span>
               </a>
             </li>
-          <? else: ?>
+          <?php else: ?>
             <li class="nav-item">
               <a class="nav-link" href="calendario.php">
               <i class="fas fa-calendar-alt"></i>
               Consultar citas
               </a>
             </li>
-          <? endif; ?>
+          <?php endif; ?>
           <!-- Asignar costo consultas -->
-          <? if($user->getRole() == 1): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'editconsultas') !== false): ?>
+          <?php if($user->getRole() == 1): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'editconsultas') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="editconsultas.php">
                 <i class="fas fa-hand-holding-usd"></i>
                   Asignar costo consultas<span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="editconsultas.php">
                 <i class="fas fa-hand-holding-usd"></i>
                   Asignar costo consultas
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?>
+            <?php endif; ?>
+          <?php endif; ?>
           <!-- Asistente -->
 
           <!-- Pacientes -->
-          <? if($user->getRole() == 3): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'pacientes') !== false): ?>
+          <?php if($user->getRole() == 3): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'pacientes') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="pacientes.php">
                 <i class="fas fa-heartbeat"></i>
                   Pacientes <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="pacientes.php">
                 <i class="fas fa-heartbeat"></i>
                   Pacientes
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
           <!-- Citas -->
-          <? if($user->getRole() == 3): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'citas') !== false): ?>
+          <?php if($user->getRole() == 3): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'citas') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="citas.php">
                 <i class="fas fa-calendar-minus"></i>
                   Asignar citas <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="citas.php">
                 <i class="fas fa-calendar-minus"></i>
                   Asignar citas
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
             <!-- Imprimir citas -->
-          <? if($user->getRole() == 3): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'printcita') !== false): ?>
+          <?php if($user->getRole() == 3): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'printcita') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="printcita.php">
                 <i class="fas fa-print"></i>
                   Imprimir citas <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="printcita.php">
                 <i class="fas fa-print"></i>
                   Imprimir citas
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
           <!-- Cumpleanos -->
-          <? if($user->getRole() == 3): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'cumple') !== false): ?>
+          <?php if($user->getRole() == 3): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'cumple') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="cumple.php">
                 <i class="fas fa-birthday-cake"></i>
                   Reporte de cumpleaños <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="cumple.php">
                 <i class="fas fa-birthday-cake"></i>
                   Reporte de cumpleaños
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
           <!-- Pago consultas -->
-          <? if($user->getRole() == 3): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'pagoconsulta') !== false): ?>
+          <?php if($user->getRole() == 3): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'pagoconsulta') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="pagoconsulta.php">
                 <i class="fas fa-hand-holding-usd"></i>
                   Registrar pago consulta <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="pagoconsulta.php">
                 <i class="fas fa-hand-holding-usd"></i>
                   Registrar pago consulta
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
           <!-- Doctor -->
 
           <!-- Visitas -->
-          <? if($user->getRole() == 2): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'visit') !== false): ?>
+          <?php if($user->getRole() == 2): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'visit') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="visitas.php">
                 <i class="fas fa-location-arrow"></i>
                     Eventos de visitas <span class="sr-only">(current)</span>
                   </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="visitas.php">
                 <i class="fas fa-location-arrow"></i>
                     Eventos de visitas
                   </a>
               </li>
-            <? endif; ?>
-          <? endif; ?>            
+            <?php endif; ?>
+          <?php endif; ?>            
           <!-- Cita proxima -->
-          <? if($user->getRole() == 2): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'consultarcita') !== false): ?>
+          <?php if($user->getRole() == 2): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'consultarcita') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="consultarcita.php">
                 <i class="fas fa-calendar-alt"></i>
                   Consultar cita proxima <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="consultarcita.php">
                 <i class="fas fa-calendar-alt"></i>
                   Consultar cita proxima
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
           <!-- Ingresos -->
-          <? if($user->getRole() == 2): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'ingresos') !== false): ?>
+          <?php if($user->getRole() == 2): ?>
+            <?php if(strpos($_SERVER['REQUEST_URI'], 'ingresos') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="ingresos.php">
                 <i class="fas fa-wallet"></i>
                   Ingresos <span class="sr-only">(current)</span>
                 </a>
               </li>
-            <? else: ?>
+            <?php else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="ingresos.php">
                 <i class="fas fa-wallet"></i>
                   Ingresos
                 </a>
               </li>
-            <? endif; ?>
-          <? endif; ?> 
+            <?php endif; ?>
+          <?php endif; ?> 
         </ul>
       </div>
     </nav>
