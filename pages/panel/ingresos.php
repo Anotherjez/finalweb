@@ -41,6 +41,10 @@ $sql = "SELECT SUM(costo) FROM consultas WHERE DATEDIFF(fecha, '{$date}') = 0 ";
 $hoy = Connection::query_arr($sql);
 $hoy = $hoy[0];
 
+if($hoy['SUM(costo)'] == null){
+  $hoy['SUM(costo)'] = 0.00;
+}
+
 $sql = "SELECT SUM(costo) FROM consultas";
 $total = Connection::query_arr($sql);
 $total = $total[0];
