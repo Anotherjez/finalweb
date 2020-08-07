@@ -249,7 +249,6 @@ function Input($id, $label, $value="", $opts=[]){
     $placeholder = "";
     $type = "text";
     $readonly = "";
-    $maxlength = 0;
 
     if(isset($_POST[$id])){
         $value = $_POST[$id];
@@ -300,7 +299,7 @@ function Input($id, $label, $value="", $opts=[]){
         return <<<INPUT
         <div class="form-group">
             <label>{$label}</label>
-            <input required {$readonly} type="{$type}" value="{$value}" maxlength={$maxlength} class="form-control {$id}" id="{$id}" name="{$id}" placeholder="{$placeholder}">
+            <input required {$readonly} type="{$type}" value="{$value}" class="form-control {$id}" id="{$id}" name="{$id}" placeholder="{$placeholder}">
         </div>
         INPUT;
     }

@@ -108,7 +108,7 @@ include('headerpanel.php');
         <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido']) ?>
         <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date']) ?>
         <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234']) ?>
-        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre', 'maxlength'=>2]) ?>
+        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre']) ?>
 
         
         <br>
