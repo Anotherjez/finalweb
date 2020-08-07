@@ -77,11 +77,8 @@ include('headerpanel.php');
     <br>    
     <form enctype="multipart/form-data" method="POST">
 
-        <!-- Nombre -->
-        <?= Input('costo','Monto (RD$)','', ['type'=>'number']) ?>
-        
+        <?= Input('costo','Monto (RD$)',0, ['type'=>'number']) ?>
         <br>
-
         <button type="submit" class="btn btn-primary">Registrar</button>
     </form>
 </div>

@@ -77,12 +77,9 @@ include('headerpanel.php');
 </div>
 <script>
     $(document).ready(function(){
-        $('.pasaporte').mask('AA0000000');
-        $('.room').mask('000');
-        $('.telefono').mask('000000000000000');
+        $('#cedula').mask('000-0000000-0');
     });
 </script>
 <script src="../../assets/js/jquery.mask.min.js"></script>
-<script src="../../assets/js/guests.js"></script>
 
 <?php include('../footer.php'); ?>

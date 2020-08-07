@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/aos.css">
     <link rel="stylesheet" href="../../assets/css/main.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="../../assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/js/jquery-3.5.1.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
   </head>
 <body>    
