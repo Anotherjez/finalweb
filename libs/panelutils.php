@@ -223,10 +223,15 @@ function GetLogs($id)
             <tr>
                 <th scope="row">{$num}</th>
                 <td>{$log['user_id']}</td>
-                <td>{$log['guest_id']}</td>
+                <td>{$log['paciente_id']}</td>
                 <td>{$log['remote_addr']}</td>
                 <td>{$log['message']}</td>
                 <td>{$log['log_date']}</td>
+                <td><form class="form-inline" method="post" action="../../libs/generate_pdf.php">
+                    <input type="hidden" id="id" name="id" value={$log['user_id']}>
+                    <input type="hidden" id="type" name="type" value="logs">
+                    <button type="submit" id="pdf" name="pdf" class="btn btn-outline-info"><i class="far fa-file-pdf" aria-hidden="true"></i> Imprimir Receta</button>
+                </form></td>
             </tr>
             LOG;
         }

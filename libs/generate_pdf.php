@@ -94,6 +94,41 @@ if($_POST){
         $pdf->Output();
     }
 
+    if($type == 'logs'){
+        $pdf = new PDF($title = "Reportes del sistema");
+        $display_heading = array('user_id'=>'ID Usuario','remote_addr'=>'Direccion IP', 'message'=>'Mensaje','log_date'=>'Fecha');
+
+        $sql = "select user_id, remote_addr, message, log_date from user_log where id = {$id}";
+        $result = Connection::query_arr($sql);
+        $header = Connection::query_arr("SHOW columns FROM user_log");
+        unset($header[0]);
+        unset($header[2]);
+        unset($header[4]);
+        
+        //header
+        $pdf->AddPage();
+        //foter page
+        $pdf->AliasNbPages();
+        $pdf->SetFont('Arial','B',13);
+            
+        foreach($header as $heading) {
+            if(strpos($heading['Field'], "message") !== false || strpos($heading['Field'], "date") !== false){
+                $pdf->Cell(90,12,$display_heading[$heading['Field']],1);
+            }else{                
+                $pdf->Cell(30,12,$display_heading[$heading['Field']],1);
+            }
+        }
+        foreach($result as $row) {
+            $pdf->Ln();
+        foreach($row as $column)
+            if(strlen($column) > 18){
+                $pdf->Cell(90,12,$column,1);
+            }else{                
+                $pdf->Cell(30,12,$column,1);
+            }
+        }
+        $pdf->Output();
+    }
 
 }
 ?>
