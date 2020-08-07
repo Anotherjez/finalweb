@@ -71,24 +71,6 @@
               </li>
             <? endif; ?>
           <? endif; ?>
-          <!-- Reportes -->
-          <? if($user->getRole() == 1): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'reportes') !== false): ?>
-              <li class="nav-item">
-                <a class="nav-link active" href="reportes.php">
-                <i class="fas fa-file"></i>
-                  Reportes del sistema <span class="sr-only">(current)</span>
-                </a>
-              </li>
-            <? else: ?>
-              <li class="nav-item">
-                <a class="nav-link" href="reportes.php">
-                <i class="fas fa-file"></i>
-                  Reportes del sistema
-                </a>
-              </li>
-            <? endif; ?>
-          <? endif; ?>
           <!-- Calendario -->
           <? if(strpos($_SERVER['REQUEST_URI'], 'calendario') !== false): ?>
             <li class="nav-item">
