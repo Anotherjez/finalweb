@@ -45,8 +45,9 @@ if($_POST){
 
   $sql = "delete from pacientes where cedula = '{$cedula}'";
   Connection::execute($sql);
-    
-  header("Refresh:0");
+  // var_dump($cedula);
+  // header('Location: '.$_SERVER['REQUEST_URI']);
+  header("Location: dashboard.php");
 }
 
 include('headerpanel.php');
@@ -83,13 +84,12 @@ include('headerpanel.php');
 <script>
 
   function DeletePaciente(e){
-    tr = e.parentNode.parentNode;
+    var tr = e.parentNode.parentNode;
+    var value = tr.getAttribute('index');
     if(confirm('¿Esta seguro que desea eliminar?')){
-      value = tr.getAttribute('index');
       $.ajax({
         url: 'pacientes.php',
         type: 'POST',
-        dataType: 'html',
         data: {'cedula': value}
       });
     } 

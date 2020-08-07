@@ -36,6 +36,11 @@ if(!($user->getRole() == 3)){
     header("Location: dashboard.php");
 }
 
+$sql ="select costo from costoconsultas where id = 1";
+
+$costo = Connection::query_arr($sql);
+$costo = $costo[0];
+
 if($_POST){
 
   foreach($_POST as &$value){
@@ -43,10 +48,7 @@ if($_POST){
   }        
   
   extract($_POST);
-  $sql ="select costo from costoconsultas where id = 1";
 
-  $costo = Connection::query_arr($sql);
-  $costo = $costo[0];
   $sql = "insert into consultas(title, costo, monto_pagado) 
   values('{$title}',{$costo['costo']},{$monto})";
   echo "<script>alert('Consulta creada exitosamente');window.location='dashboard.php'</script>";
@@ -59,20 +61,21 @@ include('headerpanel.php');
 
 ?>
 
-<div class="container" style="padding-bottom: 40px;">
-    
-    <h2>Registrar pago de consulta</h2>
-    <br>    
-    <form enctype="multipart/form-data" method="POST">
-    <?= Input('title','Titulo de la Consulta','', ['placeholder'=>'Ex: Consulta con el Dr.Perez por las sgtes razones.....']) ?>
-    <?= Input('monto','Monto a Pagar','', ['type'=>'number']) ?>
-          
-        <br>
-        <br>
+<div class="container">
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
-        <a href="dashboard.php" class="btn btn-secondary">Cancelar</a>
-    </form>
+  <h2>Registrar pago de consulta</h2>
+  <h4>Precio por consulta: RD$<?= $costo['costo'] ?></h4>
+  <br>    
+  <form enctype="multipart/form-data" method="POST">
+    <?= Input('title','Titulo de la Consulta','', ['placeholder'=>'Ex: Consulta con el Dr.Perez por las sgtes razones.....']) ?>
+    <div class="form-group">
+      <label>Monto a pagar</label>
+      <input required type="number" value="0" class="form-control" id="monto" name="monto" max=<?= $costo['costo'] ?>>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a href="dashboard.php" class="btn btn-secondary">Cancelar</a>
+  </form>
 </div>
 
 <?php include('../footer.php'); ?>

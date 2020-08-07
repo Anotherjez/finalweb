@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/aos.css">
     <link rel="stylesheet" href="../../assets/css/main.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="../../assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/js/jquery-3.5.1.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
   </head>
 <body>    
@@ -40,92 +40,219 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
+          <!-- Dashboard -->
           <? if(strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false): ?>
             <a class="nav-link active" href="dashboard.php">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-              Dashboard <span class="sr-only">(current)</span>
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard <span class="sr-only">(current)</span>
             </a>
           <? else: ?>
             <a class="nav-link" href="dashboard.php">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-              Dashboard
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard
             </a>
           <? endif; ?>
           </li>
+          <!-- Usuarios -->
           <? if($user->getRole() == 1): ?>
             <? if(strpos($_SERVER['REQUEST_URI'], 'users') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="users.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                <i class="fas fa-users"></i>
                   Usuarios <span class="sr-only">(current)</span>
                 </a>
               </li>
             <? else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="users.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                <i class="fas fa-users"></i>
                   Usuarios
                 </a>
               </li>
             <? endif; ?>
           <? endif; ?>
+          <!-- Calendario -->
+          <? if(strpos($_SERVER['REQUEST_URI'], 'calendario') !== false): ?>
+            <li class="nav-item">
+              <a class="nav-link active" href="calendario.php">
+              <i class="fas fa-calendar-alt"></i>
+              Consultar citas <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          <? else: ?>
+            <li class="nav-item">
+              <a class="nav-link" href="calendario.php">
+              <i class="fas fa-calendar-alt"></i>
+              Consultar citas
+              </a>
+            </li>
+          <? endif; ?>
+          <!-- Asignar costo consultas -->
+          <? if($user->getRole() == 1): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'editconsultas') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="editconsultas.php">
+                <i class="fas fa-hand-holding-usd"></i>
+                  Asignar costo consultas<span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="editconsultas.php">
+                <i class="fas fa-hand-holding-usd"></i>
+                  Asignar costo consultas
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?>
+          <!-- Asistente -->
+
+          <!-- Pacientes -->
           <? if($user->getRole() == 3): ?>
             <? if(strpos($_SERVER['REQUEST_URI'], 'pacientes') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="pacientes.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <i class="fas fa-heartbeat"></i>
                   Pacientes <span class="sr-only">(current)</span>
                 </a>
               </li>
             <? else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="pacientes.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <i class="fas fa-heartbeat"></i>
                   Pacientes
                 </a>
               </li>
             <? endif; ?>
           <? endif; ?> 
+          <!-- Citas -->
+          <? if($user->getRole() == 3): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'citas') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="citas.php">
+                <i class="fas fa-calendar-minus"></i>
+                  Asignar citas <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="citas.php">
+                <i class="fas fa-calendar-minus"></i>
+                  Asignar citas
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?> 
+            <!-- Imprimir citas -->
+          <? if($user->getRole() == 3): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'printcita') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="printcita.php">
+                <i class="fas fa-print"></i>
+                  Imprimir citas <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="printcita.php">
+                <i class="fas fa-print"></i>
+                  Imprimir citas
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?> 
+          <!-- Cumpleanos -->
+          <? if($user->getRole() == 3): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'cumple') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="cumple.php">
+                <i class="fas fa-birthday-cake"></i>
+                  Reporte de cumpleaños <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="cumple.php">
+                <i class="fas fa-birthday-cake"></i>
+                  Reporte de cumpleaños
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?> 
+          <!-- Pago consultas -->
+          <? if($user->getRole() == 3): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'pagoconsulta') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="pagoconsulta.php">
+                <i class="fas fa-hand-holding-usd"></i>
+                  Registrar pago consulta <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="pagoconsulta.php">
+                <i class="fas fa-hand-holding-usd"></i>
+                  Registrar pago consulta
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?> 
+          <!-- Doctor -->
+
+          <!-- Visitas -->
           <? if($user->getRole() == 2): ?>
             <? if(strpos($_SERVER['REQUEST_URI'], 'visit') !== false): ?>
               <li class="nav-item">
                 <a class="nav-link active" href="visitas.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <i class="fas fa-location-arrow"></i>
                     Eventos de visitas <span class="sr-only">(current)</span>
                   </a>
               </li>
             <? else: ?>
               <li class="nav-item">
                 <a class="nav-link" href="visitas.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <i class="fas fa-location-arrow"></i>
                     Eventos de visitas
                   </a>
               </li>
             <? endif; ?>
           <? endif; ?>            
-          <? if($user->getRole() == 1): ?>
-            <? if(strpos($_SERVER['REQUEST_URI'], 'consulta') !== false): ?>
+          <!-- Cita proxima -->
+          <? if($user->getRole() == 2): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'consultarcita') !== false): ?>
               <li class="nav-item">
-                <a class="nav-link active" href="editconsultas.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    Costo consultas <span class="sr-only">(current)</span>
-                  </a>
+                <a class="nav-link active" href="consultarcita.php">
+                <i class="fas fa-calendar-alt"></i>
+                  Consultar cita proxima <span class="sr-only">(current)</span>
+                </a>
               </li>
             <? else: ?>
               <li class="nav-item">
-                <a class="nav-link" href="editconsultas.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    Costo consultas
-                  </a>
+                <a class="nav-link" href="consultarcita.php">
+                <i class="fas fa-calendar-alt"></i>
+                  Consultar cita proxima
+                </a>
               </li>
             <? endif; ?>
           <? endif; ?> 
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              Integrations
-            </a>
-          </li>
+          <!-- Ingresos -->
+          <? if($user->getRole() == 2): ?>
+            <? if(strpos($_SERVER['REQUEST_URI'], 'ingresos') !== false): ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="ingresos.php">
+                <i class="fas fa-wallet"></i>
+                  Ingresos <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link" href="ingresos.php">
+                <i class="fas fa-wallet"></i>
+                  Ingresos
+                </a>
+              </li>
+            <? endif; ?>
+          <? endif; ?> 
         </ul>
       </div>
     </nav>

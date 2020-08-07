@@ -66,7 +66,6 @@ include('headerpanel.php');
             }
             echo Input('cedula','Cedula',$_GET['cedula'], $condition);        
         ?>
-        <!-- Nombre -->
         
         <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre', 'readonly'=>'readonly']) ?>
         <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido', 'readonly'=>'readonly']) ?>
@@ -82,14 +81,5 @@ include('headerpanel.php');
         <a href="pacientes.php" class="btn btn-secondary">Volver Atras</a>
     </form>
 </div>
-<script>
-    $(document).ready(function(){
-        $('.pasaporte').mask('AA0000000');
-        $('.room').mask('000');
-        $('.telefono').mask('000000000000000');
-    });
-</script>
-<script src="../../assets/js/jquery.mask.min.js"></script>
-<script src="../../assets/js/guests.js"></script>
 
 <?php include('../footer.php'); ?>

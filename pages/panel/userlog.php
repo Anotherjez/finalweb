@@ -56,10 +56,11 @@ include('headerpanel.php');
         <tr>
             <th scope="col">#</th>
             <th scope="col">Usuario ID</th>
-            <th scope="col">Huesped ID</th>
+            <th scope="col">Paciente ID</th>
             <th scope="col">Direccion IP</th>
             <th scope="col">Accion</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Imprimir</th>
         </tr>
     </thead>
     <tbody>

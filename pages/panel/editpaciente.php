@@ -103,13 +103,12 @@ include('headerpanel.php');
             }
             echo Input('cedula','Cedula',$_GET['cedula'], $condition);        
         ?>
-        <!-- Nombre -->
         
         <?= Input('nombre','Nombre','', ['placeholder'=>'Ingrese su nombre']) ?>
         <?= Input('apellido','Apellido','', ['placeholder'=>'Ingrese su apellido']) ?>
         <?= Input('nacimiento','Fecha de Nacimiento','', ['type'=>'date']) ?>
         <?= Input('telefono','Telefono','', ['placeholder'=>'8091231234']) ?>
-        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre']) ?>
+        <?= Input('sangre','Sangre','', ['placeholder'=>'Tipo de Sangre', 'maxlength'=>2]) ?>
 
         
         <br>
@@ -121,12 +120,9 @@ include('headerpanel.php');
 </div>
 <script>
     $(document).ready(function(){
-        $('.pasaporte').mask('AA0000000');
-        $('.room').mask('000');
-        $('.telefono').mask('000000000000000');
+        $('#cedula').mask('000-0000000-0');
     });
 </script>
 <script src="../../assets/js/jquery.mask.min.js"></script>
-<script src="../../assets/js/guests.js"></script>
 
 <?php include('../footer.php'); ?>

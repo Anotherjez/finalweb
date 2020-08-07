@@ -123,9 +123,9 @@ function GetPacientes()
                 <td>{$paciente['telefono']}</td>
                 <td>{$paciente['sangre']}</td>
                 <td>
-                <a href="editpaciente.php?cedula={$paciente['cedula']}" class="btn btn-outline-warning">Editar</a>
+                <a href="editpaciente.php?cedula={$paciente['cedula']}" class="btn btn-outline-warning" style="margin:4px;">Editar</a>
                 <br>
-                <button onclick="DeletePaciente(this)" class="btn btn-outline-danger">Eliminar</button>
+                <button onclick="DeletePaciente(this)" class="btn btn-outline-danger" style="margin:4px;">Eliminar</button>
                 </td>
             </tr>
             PACIENTE;
@@ -223,10 +223,15 @@ function GetLogs($id)
             <tr>
                 <th scope="row">{$num}</th>
                 <td>{$log['user_id']}</td>
-                <td>{$log['guest_id']}</td>
+                <td>{$log['paciente_id']}</td>
                 <td>{$log['remote_addr']}</td>
                 <td>{$log['message']}</td>
                 <td>{$log['log_date']}</td>
+                <td><form class="form-inline" method="post" action="../../libs/generate_pdf.php">
+                    <input type="hidden" id="id" name="id" value={$log['user_id']}>
+                    <input type="hidden" id="type" name="type" value="logs">
+                    <button type="submit" id="pdf" name="pdf" class="btn btn-outline-info"><i class="far fa-file-pdf" aria-hidden="true"></i> Imprimir Receta</button>
+                </form></td>
             </tr>
             LOG;
         }
@@ -244,6 +249,7 @@ function Input($id, $label, $value="", $opts=[]){
     $placeholder = "";
     $type = "text";
     $readonly = "";
+    $maxlength = 0;
 
     if(isset($_POST[$id])){
         $value = $_POST[$id];
@@ -294,7 +300,7 @@ function Input($id, $label, $value="", $opts=[]){
         return <<<INPUT
         <div class="form-group">
             <label>{$label}</label>
-            <input required {$readonly} type="{$type}" value="{$value}" class="form-control {$id}" id="{$id}" name="{$id}" placeholder="{$placeholder}">
+            <input required {$readonly} type="{$type}" value="{$value}" maxlength={$maxlength} class="form-control {$id}" id="{$id}" name="{$id}" placeholder="{$placeholder}">
         </div>
         INPUT;
     }

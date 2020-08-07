@@ -41,14 +41,14 @@ include('headerpanel.php');
 
 <div class="container">
   <h2>Consultar cita proxima</h2>
+  <br>
+  <form action="showcita.php" method="get">
+      <label>Ingrese una fecha</label>
+      <input type="date" name="fecha" id="fecha" class="form-control" style="margin-bottom:20px;">
+      
+      <button type="submit" class="btn btn-primary">Consultar</button>
+  </form>
 </div>
-<br>
-<form action="showcita.php" method="get">
-    <label>Ingrese una fecha</label>
-    <input type="date" name="fecha" id="fecha" class="form-control" style="margin-bottom:20px;">
-    
-    <button type="submit" class="btn btn-primary">Consultar</button>
-</form>
 
 
 <?php include('../footer.php'); ?>
