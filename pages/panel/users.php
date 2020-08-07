@@ -77,22 +77,6 @@ include('headerpanel.php');
     </table>
 <div>
 
-<script>
-
-  function DeleteUser(e){
-    tr = e.parentNode.parentNode;
-    if(confirm('¿Esta seguro que desea eliminar?')){
-      value = tr.getAttribute('index');
-      $.ajax({
-        url: 'users.php',
-        type: 'POST',
-        dataType: 'html',
-        data: {'username': value}
-      });
-    } 
-  }
-  
-</script>
 <script src="../../assets/js/aos.js"></script>
 <script>
   AOS.init();

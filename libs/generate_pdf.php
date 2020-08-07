@@ -155,5 +155,36 @@ if($_POST){
         $pdf->Output();
     }
 
+    if($type == 'cumple'){
+        $mytitle = "Reporte de cumpleanos del {$fecha}";
+        $pdf = new PDF($title = $mytitle);
+        $display_heading = array('nombre'=>'Nombre','apellido'=>'Apellido','nacimiento'=>'Fecha de nacimiento', 'telefono'=>'Telefono');
+
+        $time  = strtotime($fecha);
+        $month = date('m',$time);
+        $sql = "Select nombre, apellido, nacimiento, telefono from pacientes WHERE EXTRACT(MONTH FROM nacimiento) = '{$month}'";
+        $result = Connection::query_arr($sql);
+        $header = Connection::query_arr("SHOW columns FROM pacientes");
+        unset($header[0]);
+        unset($header[1]);
+        unset($header[6]);
+        
+        //header
+        $pdf->AddPage();
+        //foter page
+        $pdf->AliasNbPages();
+        $pdf->SetFont('Arial','B',13);
+            
+        foreach($header as $heading) {
+            $pdf->Cell(50,12,$display_heading[$heading['Field']],1);
+        }
+        foreach($result as $row) {
+            $pdf->Ln();
+        foreach($row as $column)
+            $pdf->Cell(50,12,$column,1);
+            }
+        $pdf->Output();
+    }
+
 }
 ?>

@@ -57,8 +57,18 @@ include('headerpanel.php');
 ?>
 
 <div class="container">
-  <h2>Cumpleaños de Pacientes</h2>
-  <br>
+  <div class="row">
+    <div class="col">
+      <h2>Cumpleaños de Pacientes</h2>
+    </div>
+    <div class="col">
+      <form class="form-inline" method="post" action="../../libs/generate_pdf.php">
+        <input type="hidden" id="fecha" name="fecha" value="<?= $end ?>">
+        <input type="hidden" id="type" name="type" value="cumple">
+        <button type="submit" id="pdf" name="pdf" class="btn btn-outline-info"><i class="far fa-file-pdf" aria-hidden="true"></i> Imprimir Reporte</button>
+      </form>
+    </div>
+  </div>
   <br>
   <form enctype="multipart/form-data" method="POST">
           

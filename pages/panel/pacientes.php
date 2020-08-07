@@ -43,7 +43,7 @@ if($_POST){
 
   extract($_POST);
 
-  $sql = "delete from pacientes where cedula = '{$cedula}'";
+  $sql = "DELETE FROM pacientes WHERE cedula = '{$cedula}'";
   Connection::execute($sql);
   // var_dump($cedula);
   // header('Location: '.$_SERVER['REQUEST_URI']);
@@ -81,21 +81,6 @@ include('headerpanel.php');
     </table>
 <div>
 
-<script>
-
-  function DeletePaciente(e){
-    var tr = e.parentNode.parentNode;
-    var value = tr.getAttribute('index');
-    if(confirm('¿Esta seguro que desea eliminar?')){
-      $.ajax({
-        url: 'pacientes.php',
-        type: 'POST',
-        data: {'cedula': value}
-      });
-    } 
-  }
-  
-</script>
 <script src="../../assets/js/aos.js"></script>
 <script>
   AOS.init();

@@ -124,8 +124,6 @@ function GetPacientes()
                 <td>{$paciente['sangre']}</td>
                 <td>
                 <a href="editpaciente.php?cedula={$paciente['cedula']}" class="btn btn-outline-warning" style="margin:4px;">Editar</a>
-                <br>
-                <button onclick="DeletePaciente(this)" class="btn btn-outline-danger" style="margin:4px;">Eliminar</button>
                 </td>
             </tr>
             PACIENTE;
@@ -194,7 +192,6 @@ function GetUsers()
                     <td>{$role}</td>
                 <td>
                 <a href="useredit.php?user={$user['id']}" class="btn btn-outline-warning">Editar</a>
-                <button onclick="DeleteUser(this)" class="btn btn-outline-danger">Eliminar</button>
                 <a href="userlog.php?log={$user['id']}" class="btn btn-outline-info">Log</a>
                 </td>
             </tr>
