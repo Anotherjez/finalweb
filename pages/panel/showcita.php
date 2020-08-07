@@ -56,17 +56,17 @@ include('headerpanel.php');
 <div class="container">
     <h2>Proxima cita</h2>
     <br>
-    <? if($objs == null): ?>
+    <?php if($objs == null): ?>
         <div class="alert alert-info" role="alert">
             <h4 class="alert-heading">No hay fechas proximas!</h4>
             <p>Al parecer no hay fechas proximas a las consultadas.</p>
         </div>
-    <? else: ?>
+    <?php else: ?>
 
     <h4>Titulo: <?= $objs[0]['title'] ?></h4>
     <h4>Fecha de inicio: <?= $objs[0]['start'] ?></h4>
     <h4>Fecha de fin: <?= $objs[0]['end'] ?></h4>        
         
-    <? endif; ?>
+    <?php endif; ?>
 </div>
 <?php include('../footer.php'); ?>
