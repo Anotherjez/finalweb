@@ -49,10 +49,10 @@ if($_POST){
   $costo = $costo[0];
   $sql = "insert into consultas(title, costo, monto_pagado) 
   values('{$title}',{$costo['costo']},{$monto})";
-
+  echo "<script>alert('Consulta creada exitosamente');window.location='dashboard.php'</script>";
   Connection::execute($sql);
-
-  header("Location:dashboard.php");
+ 
+  header("Location:printconsulta.php");
 }
 
 include('headerpanel.php');
